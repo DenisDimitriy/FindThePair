@@ -1,0 +1,13 @@
+.board {
+    width: 500px;
+}
+
+.card {
+    margin: 5px;
+    height: 100px;
+    width: 100px;
+    background-color: burlywood;
+    border: black solid 1px;
+    border-radius: 5px;
+    display: inline-block;
+}
