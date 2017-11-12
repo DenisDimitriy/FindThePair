@@ -1,12 +1,17 @@
 .board {
     width: 500px;
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+    -ms-user-select: none;
 }
 
 .card {
     margin: 5px;
     height: 100px;
     width: 100px;
-    background-color: burlywood;
+    background-color: transparent;
     border: black solid 1px;
     border-radius: 5px;
     display: inline-block;
