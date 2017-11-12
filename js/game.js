@@ -2,7 +2,7 @@
  * Created by Denis on 08.11.2017.
  */
 //Глобальные переменные
-var countSelected, selected;
+var countSelected = 0, selected = null;
 
 //создать массив случайных пар чисел
 var RandomPairArray = getRandomPairArray(6);
@@ -20,9 +20,28 @@ for (var i = 0; i < RandomPairArray.length; i++) {
     cards[i].style.backgroundImage = url;
 }
 
+//Клик в пределах доски
 board.onclick = function (event) {
     var target = event.target;
-    if (target.classList.contains("card")){
-        alert (target.dataset.number);
+
+    //клик на карту
+    if (target.classList.contains("card")) {
+        if (!selected) {
+            selected = target;
+            console.log(selected);
+        }
+        else if (selected) {
+            if (selected.dataset.number == target.dataset.number && selected!=target) {
+                alert ("The pair is found!");
+                target.classList.remove("card");
+                target.classList.add("spacer");
+                target.style.backgroundImage = "none";
+                selected.classList.remove("card");
+                selected.classList.add("spacer");
+                selected.style.backgroundImage = "none";
+            }
+            selected = null;
+        }
     }
+    return false;
 };

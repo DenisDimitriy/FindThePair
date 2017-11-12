@@ -11,3 +11,13 @@
     border-radius: 5px;
     display: inline-block;
 }
+
+.spacer {
+    margin: 5px;
+    height: 100px;
+    width: 100px;
+    background-color: transparent;
+    border: transparent solid 1px;
+    border-radius: 5px;
+    display: inline-block;
+}
