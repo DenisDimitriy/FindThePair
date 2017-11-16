@@ -22,28 +22,19 @@ function getRandomPairArray(dimension) {
 }
 
 function removeCard(element) {
+    element.innerHTML = null;
+    element.className = "spacer";
+    /*
+    element.classList.remove("flip-container");
     element.classList.remove("card");
-    element.classList.add("spacer");
-    element.style.backgroundImage = "none";
+    element.classList.add("spacer")
+    */
 }
 
 function openCard(element) {
-    element.style.backgroundImage = "url(img/themes/" + theme + "/" + element.dataset.number + ".png)";
+    element.classList.add('hover');
 }
 
 function closeCard(element) {
-    element.style.backgroundImage = "url(img/skins/" + skin + ".png)";
-}
-
-function turnCard(element) {
-    if (element.classList.contains("open")) {
-        closeCard(element);
-    }
-    else {
-        openCard(element);
-    }
-}
-
-function finishGame() {
-    alert("Finish!!!");
+    element.classList.remove('hover');
 }
