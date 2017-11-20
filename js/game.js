@@ -2,21 +2,27 @@
  * Created by Denis on 08.11.2017.
  */
 //Глобальные переменные
-var countOfPair = 12,
+var countOfPair = 6,
     theme = "numbers",
     skin = "hearthstone",
     selected = null,
     counter = 0,
-    disableSelect = true;
+    disableSelect = true,
+    idTimer;
 
-//создать массив случайных пар чисел
+
+/* КОНФИГУРИРОВАНИЕ */
+
+//Сгенерировать массив случайных пар чисел
 var RandomPairArray = getRandomPairArray(countOfPair);
 
+//Сгенерировать доску с картами
 var board = initBoard(countOfPair);
 
+//Задать ширину стека
 document.querySelector(".discard-stack").style.width = parseInt(getComputedStyle(board).width, 10) + "px";
 
-//запомнить набор блоков card в коллекцию
+//Выбрать набор блоков card в коллекцию
 var cards = document.getElementsByClassName("card");
 
 //Инициализировать блоки карт согласно массиву случайных пар чисел
@@ -28,26 +34,37 @@ for (var i = 0; i < RandomPairArray.length; i++) {
     back.style.backgroundImage = 'url("img/themes/' + theme + '/' + cards[i].dataset.number + '.png")';
 }
 
+//Выбрать блок таймера
+var timer = document.querySelector(".timer");
+
+
+/*СЦЕНАРИЙ ИГРЫ*/
+
+//Открыть карты
 for (i = 0; i < cards.length; i++) {
     openCard(cards[i]);
 }
 
-//Отвернуть все карты
+//Через время отвернуть все карты, начать игру, запустить таймер
 setTimeout(function () {
     for (i = 0; i < cards.length; i++) {
         closeCard(cards[i]);
     }
     disableSelect = false;
+    idTimer = startTimer(timer);
 }, 2000);
 
 
 //Обработчики событий
 //Клик в пределах доски
 board.onclick = function (event) {
-    var target = event.target.closest('.card');
+    //Выбрать карту в цели клика
+    var target = event.target.closest('.card')
+
+    //Возврат, если клик не на карте
     if (target == null) return;
 
-    //клик на карту
+    //Если клик на карту и нет запрета выбора карты
     if (target.classList.contains("card") && disableSelect != true) {
 
         //если ниодна карта еще не выбрана
@@ -74,22 +91,15 @@ board.onclick = function (event) {
 
             //если номера целевой и выбранной карт совпадают и это не одна и та же карта
             if (selected.dataset.number == target.dataset.number && selected != target) {
-                //disableSelect = true;
-                //openCard(target);
-                var card1 = removeCard(selected);
-                var card2 = removeCard(target);
+                removeCard(selected);
+                removeCard(target);
                 selected = null;
                 target = null;
                 counter++;
                 if (counter == countOfPair) {
+                    stopTimer(idTimer);
                     finishGame();
                 }
-                /*
-                 setTimeout(function () {
-                 removeCard(card1);
-                 removeCard(card2);
-                 }, 500);
-                 */
             }
         }
     }
@@ -97,6 +107,3 @@ board.onclick = function (event) {
 };
 
 
-function finishGame() {
-    document.querySelector("#message").innerHTML = "FINISH";
-}

@@ -11,7 +11,7 @@
     -ms-user-select: none;
     background-color: aquamarine;
     font-size: 0;
-    float: left;
+    float:left;
 }
 
 .card, .spacer{
@@ -107,4 +107,8 @@
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
+}
+
+.timer {
+    float:left;
 }

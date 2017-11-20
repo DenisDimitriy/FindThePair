@@ -112,10 +112,6 @@ function removeCard(element) {
         newElement1.style.top = newTop + "px";
         newElement1.style.left = newLeft + "px";
     }, 1000);
-
-
-    //Переместить карту в стэк
-    //discardCard(newElement);
 }
 
 function openCard(element) {
@@ -124,4 +120,80 @@ function openCard(element) {
 
 function closeCard(element) {
     element.classList.remove('hover');
+}
+
+function startTimer(timer) {
+
+    timer.innerHTML = '';
+
+    var hour = document.createElement("span");
+    var minute = document.createElement("span");
+    var second = document.createElement("span");
+    var decisec = document.createElement("span");
+
+    hour.classList.add("hour");
+    minute.classList.add("minute");
+    second.classList.add("second");
+    decisec.classList.add("decisec");
+
+    hour.dataset.hour = 0;
+    minute.dataset.minute = 0;
+    second.dataset.second = 0;
+    decisec.dataset.decisec = 0;
+
+    hour.innerHTML = "00:";
+    minute.innerHTML = "00:";
+    second.innerHTML = "00.";
+    decisec.innerHTML = "0";
+
+    timer.appendChild(hour);
+    timer.appendChild(minute);
+    timer.appendChild(second);
+    timer.appendChild(decisec);
+
+    //var startDate = new Date();
+    var startDate = Date.now();
+    var curDate;
+
+    var idTimer = setInterval(function () {
+        curDate = Date.now();
+        var diffDate = curDate - startDate;
+        decisec.dataset.decisec = Math.floor(diffDate / 100);
+        second.dataset.second = Math.floor(decisec.dataset.decisec / 10);
+        minute.dataset.minute = Math.floor(second.dataset.second / 60);
+        hour.dataset.hour = Math.floor(minute.dataset.minute / 60);
+
+        decisec.innerHTML = decisec.dataset.decisec - (second.dataset.second * 10);
+
+        second.innerHTML = second.dataset.second - (minute.dataset.minute * 60);
+        if (+second.innerHTML < 10) {
+            second.innerHTML = "0" + second.innerHTML;
+        }
+        second.innerHTML = second.innerHTML + ".";
+
+
+        minute.innerHTML = minute.dataset.minute - (hour.dataset.hour * 60);
+        if (+minute.innerHTML < 10) {
+            minute.innerHTML = "0" + minute.innerHTML;
+        }
+        minute.innerHTML = minute.innerHTML + ":";
+
+        hour.innerHTML = hour.dataset.hour;
+        if (+hour.innerHTML < 10) {
+            hour.innerHTML = "0" + hour.innerHTML;
+        }
+        hour.innerHTML = hour.innerHTML + ":";
+
+    }, 100);
+
+    return idTimer;
+}
+
+
+function finishGame() {
+    document.querySelector("#message").innerHTML = "FINISH";
+}
+
+function stopTimer (timerId) {
+    clearInterval(timerId)
 }
