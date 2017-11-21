@@ -8,8 +8,10 @@ var countOfPair = 6,
     selected = null,
     counter = 0,
     disableSelect = true,
-    idTimer;
-
+    idTimer,
+    gameStarted = false,
+    gamePaused = false,
+    gameFinished = false;
 
 /* КОНФИГУРИРОВАНИЕ */
 
@@ -19,7 +21,7 @@ var RandomPairArray = getRandomPairArray(countOfPair);
 //Сгенерировать доску с картами
 var board = initBoard(countOfPair);
 
-//Задать ширину стека
+//Задать ширину стека удаленных карт
 document.querySelector(".discard-stack").style.width = parseInt(getComputedStyle(board).width, 10) + "px";
 
 //Выбрать набор блоков card в коллекцию
@@ -37,29 +39,53 @@ for (var i = 0; i < RandomPairArray.length; i++) {
 //Выбрать блок таймера
 var timer = document.querySelector(".timer");
 
+var btnControl = document.querySelector(".btn-control");
+
 
 /*СЦЕНАРИЙ ИГРЫ*/
 
-//Открыть карты
-for (i = 0; i < cards.length; i++) {
-    openCard(cards[i]);
-}
-
-//Через время отвернуть все карты, начать игру, запустить таймер
-setTimeout(function () {
-    for (i = 0; i < cards.length; i++) {
-        closeCard(cards[i]);
-    }
-    disableSelect = false;
-    idTimer = startTimer(timer);
-}, 2000);
-
-
 //Обработчики событий
+//Клик на кнопку управления
+btnControl.onclick = function () {
+    //Если игра не начата
+    if (!gameStarted) {
+        gameStarted = true;
+        btnControl.innerHTML = "Pause";
+        //Открыть карты
+        for (i = 0; i < cards.length; i++) {
+            openCard(cards[i]);
+        }
+
+        //Через время отвернуть все карты, начать игру, запустить таймер
+        setTimeout(function () {
+            for (i = 0; i < cards.length; i++) {
+                closeCard(cards[i]);
+            }
+            disableSelect = false;
+            idTimer = startTimer(timer);
+        }, 2000);
+    }
+    else if (!gamePaused) {
+        gamePaused = true;
+        btnControl.innerHTML = "Resume";
+        disableSelect = true;
+        stopTimer(idTimer)
+    }
+    else if (!gameFinished) {
+        gamePaused = false;
+        btnControl.innerHTML = "Pause";
+        disableSelect = false;
+        idTimer = resumeTimer(timer);
+    }
+    if (gameFinished){
+        alert ("It must be restarted")
+     }
+};
+
 //Клик в пределах доски
 board.onclick = function (event) {
     //Выбрать карту в цели клика
-    var target = event.target.closest('.card')
+    var target = event.target.closest('.card');
 
     //Возврат, если клик не на карте
     if (target == null) return;
@@ -73,10 +99,10 @@ board.onclick = function (event) {
             openCard(selected);
         }
 
-        //если уже выбрана одна карта
+        //Eсли уже выбрана одна карта
         else if (selected) {
 
-            //если номера целевой и выбранной карт не совпадают и это не одна и та же карта
+            //Eсли номера целевой и выбранной карт не совпадают и это не одна и та же карта
             if (selected.dataset.number != target.dataset.number && selected != target) {
                 disableSelect = true;
                 openCard(target);
@@ -89,7 +115,7 @@ board.onclick = function (event) {
                 }, 750)
             }
 
-            //если номера целевой и выбранной карт совпадают и это не одна и та же карта
+            //Eсли номера целевой и выбранной карт совпадают и это не одна и та же карта
             if (selected.dataset.number == target.dataset.number && selected != target) {
                 removeCard(selected);
                 removeCard(target);
@@ -97,6 +123,8 @@ board.onclick = function (event) {
                 target = null;
                 counter++;
                 if (counter == countOfPair) {
+                    gameFinished = true;
+                    btnControl.innerHTML = "Restart";
                     stopTimer(idTimer);
                     finishGame();
                 }
@@ -105,5 +133,3 @@ board.onclick = function (event) {
     }
     return false;
 };
-
-

@@ -79,7 +79,7 @@ function removeCard(element) {
     gameSpace.appendChild(newElement1);
 
     //Поместить клон 2 в стэк
-    newElement2.className = "spacer stacked-card";
+    newElement2.className = "spacer small";
     newElement2.innerHTML = null;
     discardStack.appendChild(newElement2);
 
@@ -90,7 +90,6 @@ function removeCard(element) {
     var margLeft = parseInt(getComputedStyle(element).marginLeft, 10);
     var newTop = offSetTop - margTop;
     var newLeft = offSetLeft - margLeft;
-    console.log(newTop + " : " + newLeft);
     newElement1.style.top = newTop + "px";
     newElement1.style.left = newLeft + "px";
 
@@ -99,7 +98,7 @@ function removeCard(element) {
         openCard(newElement1);
     }, 0);
 
-    //Переместить клон 1 в стэк
+    //Переместить клон 1 на место клона 2
     setTimeout(function () {
         newElement1.classList.add("small");
         offSetTop = newElement2.offsetTop;
@@ -111,7 +110,18 @@ function removeCard(element) {
         //newTop = parseInt(newElement1.style.top, 10) + 100;
         newElement1.style.top = newTop + "px";
         newElement1.style.left = newLeft + "px";
+
+        //Скопировать клон 2 в клон 1, клон 2 удалить
+        setTimeout(function () {
+            newElement2.className = newElement1.className;
+            newElement2.innerHTML = newElement1.innerHTML;
+            newElement2.classList.remove("avatar");
+            gameSpace.removeChild(newElement1);
+        }, 500)
+
     }, 1000);
+
+    return newElement2;
 }
 
 function openCard(element) {
@@ -189,11 +199,55 @@ function startTimer(timer) {
     return idTimer;
 }
 
-
-function finishGame() {
-    document.querySelector("#message").innerHTML = "FINISH";
+function stopTimer(timerId) {
+    clearInterval(timerId)
 }
 
-function stopTimer (timerId) {
-    clearInterval(timerId)
+function resumeTimer(timer) {
+    var decisec = timer.querySelector(".decisec");
+    var second = timer.querySelector(".second");
+    var minute = timer.querySelector(".minute");
+    var hour = timer.querySelector(".hour");
+    var lastTime = +decisec.dataset.decisec;
+
+    //var startDate = new Date();
+    var startDate = Date.now();
+    var curDate;
+
+    var idTimer = setInterval(function () {
+        curDate = Date.now();
+        var diffDate = curDate - startDate;
+        decisec.dataset.decisec = Math.floor(diffDate / 100) + lastTime;
+        second.dataset.second = Math.floor(decisec.dataset.decisec / 10);
+        minute.dataset.minute = Math.floor(second.dataset.second / 60);
+        hour.dataset.hour = Math.floor(minute.dataset.minute / 60);
+
+        decisec.innerHTML = decisec.dataset.decisec - (second.dataset.second * 10);
+
+        second.innerHTML = second.dataset.second - (minute.dataset.minute * 60);
+        if (+second.innerHTML < 10) {
+            second.innerHTML = "0" + second.innerHTML;
+        }
+        second.innerHTML = second.innerHTML + ".";
+
+
+        minute.innerHTML = minute.dataset.minute - (hour.dataset.hour * 60);
+        if (+minute.innerHTML < 10) {
+            minute.innerHTML = "0" + minute.innerHTML;
+        }
+        minute.innerHTML = minute.innerHTML + ":";
+
+        hour.innerHTML = hour.dataset.hour;
+        if (+hour.innerHTML < 10) {
+            hour.innerHTML = "0" + hour.innerHTML;
+        }
+        hour.innerHTML = hour.innerHTML + ":";
+
+    }, 100);
+
+    return idTimer;
+}
+
+function finishGame() {
+    document.querySelector(".message").innerHTML = "FINISH";
 }
