@@ -8,37 +8,35 @@ var countOfPair = 6,
     selected = null,
     counter = 0,
     disableSelect = true,
-    idTimer,
+    timerId,
     gameStarted = false,
     gamePaused = false,
     gameFinished = false;
 
 /* КОНФИГУРИРОВАНИЕ */
 
-//Сгенерировать массив случайных пар чисел
-var RandomPairArray = getRandomPairArray(countOfPair);
+//Выбрать элемент board
+var board = document.querySelector(".board");
 
 //Сгенерировать доску с картами
-var board = initBoard(countOfPair);
+generateBoard(board);
 
 //Задать ширину стека удаленных карт
 document.querySelector(".discard-stack").style.width = parseInt(getComputedStyle(board).width, 10) + "px";
 
-//Выбрать набор блоков card в коллекцию
+//Выбрать набор элементов card в коллекцию
 var cards = document.getElementsByClassName("card");
 
-//Инициализировать блоки карт согласно массиву случайных пар чисел
-for (var i = 0; i < RandomPairArray.length; i++) {
-    cards[i].dataset.number = RandomPairArray[i];
-    var front = cards[i].querySelector(".front");
-    front.style.backgroundImage = 'url("img/skins/' + skin + '.png")';
-    var back = cards[i].querySelector(".back");
-    back.style.backgroundImage = 'url("img/themes/' + theme + '/' + cards[i].dataset.number + '.png")';
-}
+//Инициализировать карты
+ititCards(cards);
 
 //Выбрать блок таймера
 var timer = document.querySelector(".timer");
 
+//Инициализировать таймер
+initTimer(timer);
+
+//Выбрать блок кнопки управления
 var btnControl = document.querySelector(".btn-control");
 
 
@@ -55,29 +53,34 @@ btnControl.onclick = function () {
         for (i = 0; i < cards.length; i++) {
             openCard(cards[i]);
         }
-
-        //Через время отвернуть все карты, начать игру, запустить таймер
+        //Через время открыть все карты, разрешить выбор карт, запустить таймер
         setTimeout(function () {
             for (i = 0; i < cards.length; i++) {
                 closeCard(cards[i]);
             }
             disableSelect = false;
-            idTimer = startTimer(timer);
+            timerId = startTimer(timer);
         }, 2000);
     }
-    else if (!gamePaused) {
+    //если игра запущена, не закончена и не нажата пауза
+    else if (!gamePaused && !gameFinished) {
+        //включить паузу
         gamePaused = true;
         btnControl.innerHTML = "Resume";
         disableSelect = true;
-        stopTimer(idTimer)
+        stopTimer(timerId)
     }
-    else if (!gameFinished) {
+    //если игра запущена, не закончена и нажата пауза
+    else if (gamePaused && !gameFinished) {
+        //Выключить паузу
         gamePaused = false;
         btnControl.innerHTML = "Pause";
         disableSelect = false;
-        idTimer = resumeTimer(timer);
+        timerId = startTimer(timer);
     }
+    //Если игра закончена
     if (gameFinished){
+        //Рестарт игры
         alert ("It must be restarted")
      }
 };
@@ -125,7 +128,7 @@ board.onclick = function (event) {
                 if (counter == countOfPair) {
                     gameFinished = true;
                     btnControl.innerHTML = "Restart";
-                    stopTimer(idTimer);
+                    stopTimer(timerId);
                     finishGame();
                 }
             }

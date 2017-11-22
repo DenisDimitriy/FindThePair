@@ -21,26 +21,24 @@ function getRandomPairArray(dimension) {
     return arrayRezult;
 }
 
-function initBoard(countOfPair) {
-    var board = document.querySelector(".board");
-
-    var boardWidth;
+function generateBoard(board) {
+    //Определить значение ширины
     switch (countOfPair) {
         case 6:
-            boardWidth = '448px';
+            board.style.width = '448px';
             break;
         case 8:
-            boardWidth = '448px';
+            board.style.width = '448px';
             break;
         case 10:
-            boardWidth = '560px';
+            board.style.width = '560px';
             break;
         case 12:
-            boardWidth = '672px';
+            board.style.width = '672px';
             break;
     }
-    board.style.width = boardWidth;
 
+    //Добавить элементы card с flipper
     for (var i = 0; i < countOfPair * 2; i++) {
         var newCard = document.createElement("div");
         var newFlipper = document.createElement("div");
@@ -56,9 +54,23 @@ function initBoard(countOfPair) {
         board.appendChild(newCard);
     }
 
-
-    return board;
+    //return board;
 }
+
+function ititCards(cards) {
+//Сгенерировать массив случайных пар чисел
+    var RandomPairArray = getRandomPairArray(countOfPair);
+
+//Инициализировать блоки карт согласно массиву случайных пар чисел
+    for (var i = 0; i < RandomPairArray.length; i++) {
+        cards[i].dataset.number = RandomPairArray[i];
+        var front = cards[i].querySelector(".front");
+        front.style.backgroundImage = 'url("img/skins/' + skin + '.png")';
+        var back = cards[i].querySelector(".back");
+        back.style.backgroundImage = 'url("img/themes/' + theme + '/' + cards[i].dataset.number + '.png")';
+    }
+}
+
 
 function removeCard(element) {
 
@@ -132,8 +144,7 @@ function closeCard(element) {
     element.classList.remove('hover');
 }
 
-function startTimer(timer) {
-
+function initTimer(timer) {
     timer.innerHTML = '';
 
     var hour = document.createElement("span");
@@ -160,15 +171,25 @@ function startTimer(timer) {
     timer.appendChild(minute);
     timer.appendChild(second);
     timer.appendChild(decisec);
+}
+
+function startTimer(timer) {
+
+    var hour = timer.querySelector(".hour");
+    var minute = timer.querySelector(".minute");
+    var second = timer.querySelector(".second");
+    var decisec = timer.querySelector(".decisec");
 
     //var startDate = new Date();
     var startDate = Date.now();
     var curDate;
+    var lastDecisec = +(decisec.dataset.decisec);
 
-    var idTimer = setInterval(function () {
+    var timerId = setInterval(function () {
         curDate = Date.now();
         var diffDate = curDate - startDate;
-        decisec.dataset.decisec = Math.floor(diffDate / 100);
+
+        decisec.dataset.decisec = Math.floor(diffDate / 100) + lastDecisec;
         second.dataset.second = Math.floor(decisec.dataset.decisec / 10);
         minute.dataset.minute = Math.floor(second.dataset.second / 60);
         hour.dataset.hour = Math.floor(minute.dataset.minute / 60);
@@ -180,7 +201,6 @@ function startTimer(timer) {
             second.innerHTML = "0" + second.innerHTML;
         }
         second.innerHTML = second.innerHTML + ".";
-
 
         minute.innerHTML = minute.dataset.minute - (hour.dataset.hour * 60);
         if (+minute.innerHTML < 10) {
@@ -196,56 +216,11 @@ function startTimer(timer) {
 
     }, 100);
 
-    return idTimer;
+    return timerId;
 }
 
 function stopTimer(timerId) {
     clearInterval(timerId)
-}
-
-function resumeTimer(timer) {
-    var decisec = timer.querySelector(".decisec");
-    var second = timer.querySelector(".second");
-    var minute = timer.querySelector(".minute");
-    var hour = timer.querySelector(".hour");
-    var lastTime = +decisec.dataset.decisec;
-
-    //var startDate = new Date();
-    var startDate = Date.now();
-    var curDate;
-
-    var idTimer = setInterval(function () {
-        curDate = Date.now();
-        var diffDate = curDate - startDate;
-        decisec.dataset.decisec = Math.floor(diffDate / 100) + lastTime;
-        second.dataset.second = Math.floor(decisec.dataset.decisec / 10);
-        minute.dataset.minute = Math.floor(second.dataset.second / 60);
-        hour.dataset.hour = Math.floor(minute.dataset.minute / 60);
-
-        decisec.innerHTML = decisec.dataset.decisec - (second.dataset.second * 10);
-
-        second.innerHTML = second.dataset.second - (minute.dataset.minute * 60);
-        if (+second.innerHTML < 10) {
-            second.innerHTML = "0" + second.innerHTML;
-        }
-        second.innerHTML = second.innerHTML + ".";
-
-
-        minute.innerHTML = minute.dataset.minute - (hour.dataset.hour * 60);
-        if (+minute.innerHTML < 10) {
-            minute.innerHTML = "0" + minute.innerHTML;
-        }
-        minute.innerHTML = minute.innerHTML + ":";
-
-        hour.innerHTML = hour.dataset.hour;
-        if (+hour.innerHTML < 10) {
-            hour.innerHTML = "0" + hour.innerHTML;
-        }
-        hour.innerHTML = hour.innerHTML + ":";
-
-    }, 100);
-
-    return idTimer;
 }
 
 function finishGame() {
