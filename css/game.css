@@ -1,5 +1,6 @@
 .game-space {
     position: relative;
+    float: left;
 }
 
 .board {
@@ -10,7 +11,7 @@
     -ms-user-select: none;
     background-color: aquamarine;
     font-size: 0;
-    float:left;
+    margin: 10px;
 }
 
 .card, .spacer{
@@ -67,7 +68,9 @@
 }
 
 .discard-stack {
-    background-color: burlywood;
+    background-color: #a0a0a0;
+    font-size: 0;
+    margin: 10px;
 }
 
 .footer {
@@ -77,6 +80,7 @@
 .small{
     width: 52px;
     height: 52px;
+    margin: 2px;
 }
 
 .small .front, .small .back {
@@ -91,6 +95,7 @@
 .avatar.small {
     width: 52px;
     height: 52px;
+    margin: 2px;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
     -ms-transition: 0.5s;

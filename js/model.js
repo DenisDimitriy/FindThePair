@@ -57,7 +57,7 @@ function generateBoard(board) {
     //return board;
 }
 
-function ititCards(cards) {
+function initCards(cards) {
 //Сгенерировать массив случайных пар чисел
     var RandomPairArray = getRandomPairArray(countOfPair);
 
@@ -126,8 +126,8 @@ function removeCard(element) {
         //Скопировать клон 2 в клон 1, клон 2 удалить
         setTimeout(function () {
             newElement2.className = newElement1.className;
-            newElement2.innerHTML = newElement1.innerHTML;
             newElement2.classList.remove("avatar");
+            newElement2.innerHTML = newElement1.innerHTML;
             gameSpace.removeChild(newElement1);
         }, 500)
 
@@ -223,6 +223,62 @@ function stopTimer(timerId) {
     clearInterval(timerId)
 }
 
-function finishGame() {
-    document.querySelector(".message").innerHTML = "FINISH";
+function finishGame(name, countOfPair, counterTryes) {
+    var records;
+
+    var dateNew = new Date();
+    var day = +dateNew.getDate();
+    var month = +dateNew.getMonth() + 1;
+    var year = +dateNew.getFullYear();
+    var hour = +dateNew.getHours();
+    var minute = +dateNew.getMinutes();
+    var second = +dateNew.getSeconds();
+
+    var timer = document.querySelector(".timer");
+    var decisec = timer.querySelector(".decisec");
+    var time = decisec.dataset.decisec;
+
+    var scores = (countOfPair * 10000) / (time * counterTryes);
+
+    var newRecord = {
+        date: {day: day, month: month, year: year, hour: hour, minute: minute, second: second},
+        name: name,
+        size: countOfPair,
+        time: time,
+        countOftTryes: counterTryes,
+        scores: scores
+    };
+
+    var recordsJSON = localStorage.getItem("records");
+    if (recordsJSON == null) {
+
+        var recordsNew = [];
+        recordsNew.push(newRecord);
+        var recordsNewString = JSON.stringify(recordsNew); //сериализуем его
+        localStorage.removeItem("records");
+        localStorage.setItem("records", recordsNewString); //запишем его в хранилище по ключу "myKey"
+
+    }
+    else {
+        records = JSON.parse(recordsJSON);
+        records.push(newRecord);
+        var recordsString = JSON.stringify(records); //сериализуем его
+        localStorage.removeItem("records");
+        localStorage.setItem("records", recordsString);
+    }
 }
+
+/*
+ //создадим объект
+ var obj = {
+ item1: 1,
+ item2: [123, "two", 3.0],
+ item3:"hello"
+ };
+
+ var serialObj = JSON.stringify(obj); //сериализуем его
+
+ localStorage.setItem("myKey", serialObj); //запишем его в хранилище по ключу "myKey"
+
+ var returnObj = JSON.parse(localStorage.getItem("myKey")) //спарсим его обратно объект
+ */

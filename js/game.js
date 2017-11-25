@@ -3,15 +3,19 @@
  */
 //Глобальные переменные
 var countOfPair = 6,
+    name = "Vasya",
     theme = "numbers",
     skin = "hearthstone",
+
+    counterTryes = 0,
     selected = null,
     counter = 0,
     disableSelect = true,
     timerId,
     gameStarted = false,
     gamePaused = false,
-    gameFinished = false;
+    gameFinished = false,
+    disableBtnControl = false;
 
 /* КОНФИГУРИРОВАНИЕ */
 
@@ -22,13 +26,14 @@ var board = document.querySelector(".board");
 generateBoard(board);
 
 //Задать ширину стека удаленных карт
-document.querySelector(".discard-stack").style.width = parseInt(getComputedStyle(board).width, 10) + "px";
+var discardStack = document.querySelector(".discard-stack");
+discardStack.style.width = parseInt(getComputedStyle(board).width, 10) + "px";
 
 //Выбрать набор элементов card в коллекцию
 var cards = document.getElementsByClassName("card");
 
 //Инициализировать карты
-ititCards(cards);
+initCards(cards);
 
 //Выбрать блок таймера
 var timer = document.querySelector(".timer");
@@ -39,6 +44,8 @@ initTimer(timer);
 //Выбрать блок кнопки управления
 var btnControl = document.querySelector(".btn-control");
 
+//Выбрать блок кнопки управления
+var btnRestart = document.querySelector(".btn-restart");
 
 /*СЦЕНАРИЙ ИГРЫ*/
 
@@ -47,6 +54,7 @@ var btnControl = document.querySelector(".btn-control");
 btnControl.onclick = function () {
     //Если игра не начата
     if (!gameStarted) {
+        disableBtnControl = true;
         gameStarted = true;
         btnControl.innerHTML = "Pause";
         //Открыть карты
@@ -60,18 +68,19 @@ btnControl.onclick = function () {
             }
             disableSelect = false;
             timerId = startTimer(timer);
+            disableBtnControl = false;
         }, 2000);
     }
     //если игра запущена, не закончена и не нажата пауза
-    else if (!gamePaused && !gameFinished) {
+    else if (!gamePaused && !gameFinished && !disableBtnControl) {
         //включить паузу
         gamePaused = true;
         btnControl.innerHTML = "Resume";
         disableSelect = true;
-        stopTimer(timerId)
+        stopTimer(timerId);
     }
     //если игра запущена, не закончена и нажата пауза
-    else if (gamePaused && !gameFinished) {
+    else if (gamePaused && !gameFinished && !disableBtnControl) {
         //Выключить паузу
         gamePaused = false;
         btnControl.innerHTML = "Pause";
@@ -79,10 +88,51 @@ btnControl.onclick = function () {
         timerId = startTimer(timer);
     }
     //Если игра закончена
-    if (gameFinished){
+    if (gameFinished) {
+
+        /*
         //Рестарт игры
-        alert ("It must be restarted")
-     }
+        board.innerHTML = null;
+        timer.innerHTML = null;
+        discardStack.innerHTML = null;
+        generateBoard(board);
+        cards = document.getElementsByClassName("card");
+        initCards(cards);
+        initTimer(timer);
+        btnControl.innerHTML = "Start";
+
+        selected = null;
+        counter = 0;
+        disableSelect = true;
+        timerId = null;
+        gameStarted = false;
+        gamePaused = false;
+        gameFinished = false;
+        */
+    }
+};
+
+//Клик на restart
+btnRestart.onclick = function () {
+    //Рестарт игры
+    board.innerHTML = null;
+    timer.innerHTML = null;
+    discardStack.innerHTML = null;
+    generateBoard(board);
+    cards = document.getElementsByClassName("card");
+    initCards(cards);
+    initTimer(timer);
+    btnControl.innerHTML = "Start";
+    counterTryes = 0;
+
+    selected = null;
+    counter = 0;
+    disableSelect = true;
+    timerId = null;
+    gameStarted = false;
+    gamePaused = false;
+    gameFinished = false;
+    disableBtnControl = false;
 };
 
 //Клик в пределах доски
@@ -107,6 +157,7 @@ board.onclick = function (event) {
 
             //Eсли номера целевой и выбранной карт не совпадают и это не одна и та же карта
             if (selected.dataset.number != target.dataset.number && selected != target) {
+                counterTryes++;
                 disableSelect = true;
                 openCard(target);
                 setTimeout(function () {
@@ -120,6 +171,7 @@ board.onclick = function (event) {
 
             //Eсли номера целевой и выбранной карт совпадают и это не одна и та же карта
             if (selected.dataset.number == target.dataset.number && selected != target) {
+                counterTryes++;
                 removeCard(selected);
                 removeCard(target);
                 selected = null;
@@ -127,9 +179,10 @@ board.onclick = function (event) {
                 counter++;
                 if (counter == countOfPair) {
                     gameFinished = true;
-                    btnControl.innerHTML = "Restart";
+                    btnControl.innerHTML = "Start";
+                    disableSelect = true;
                     stopTimer(timerId);
-                    finishGame();
+                    finishGame(name, countOfPair, counterTryes);
                 }
             }
         }
