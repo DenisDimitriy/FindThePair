@@ -42,14 +42,14 @@ function generateBoard(board) {
     for (var i = 0; i < countOfPair * 2; i++) {
         var newCard = document.createElement("div");
         var newFlipper = document.createElement("div");
-        var newFront = document.createElement("div");
-        var newBack = document.createElement("div");
+        var newback = document.createElement("div");
+        var newfront = document.createElement("div");
         newCard.className = "card flip-container";
         newFlipper.className = "flipper";
-        newFront.className = "front";
-        newBack.className = "back";
-        newFlipper.appendChild(newFront);
-        newFlipper.appendChild(newBack);
+        newback.className = "back";
+        newfront.className = "front";
+        newFlipper.appendChild(newback);
+        newFlipper.appendChild(newfront);
         newCard.appendChild(newFlipper);
         board.appendChild(newCard);
     }
@@ -64,13 +64,12 @@ function initCards(cards) {
 //Инициализировать блоки карт согласно массиву случайных пар чисел
     for (var i = 0; i < RandomPairArray.length; i++) {
         cards[i].dataset.number = RandomPairArray[i];
-        var front = cards[i].querySelector(".front");
-        front.style.backgroundImage = 'url("img/skins/' + skin + '.png")';
         var back = cards[i].querySelector(".back");
-        back.style.backgroundImage = 'url("img/themes/' + theme + '/' + cards[i].dataset.number + '.png")';
+        back.style.backgroundImage = 'url("img/themes/' + theme + '/back-side.png")';
+        var front = cards[i].querySelector(".front");
+        front.style.backgroundImage = 'url("img/themes/' + theme + '/' + cards[i].dataset.number + '.png")';
     }
 }
-
 
 function removeCard(element) {
 

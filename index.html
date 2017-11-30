@@ -8,17 +8,16 @@
 <h1>Find the Pair</h1>
 
 <a href=#>Home</a>
-<a href="game.html">Play</a>
 <a href="scores.html">Score</a>
 <form action="game.html" method="get">
-    <input title="player" type="text" name="player">
-    <input title="size" type="radio" name="boardsize" value="6">
+    <input title="player" type="text" name="player" value="unknown">
+    <input title="size" type="radio" name="boardsize" value="6" checked>
     <input title="size" type="radio" name="boardsize" value="8">
     <input title="size" type="radio" name="boardsize" value="10">
     <input title="size" type="radio" name="boardsize" value="12">
     <select title="theme" name="theme">
-        <option selected value="numbers" disabled>Choose the theme</option>
-        <option value="numbers">Numbers</option>
+        <option value="numbers" disabled>Choose the theme</option>
+        <option selected value="numbers">Numbers</option>
         <option value="superheroes">Heroes</option>
     </select>
     <input type="submit" value="Play">

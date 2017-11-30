@@ -2,27 +2,24 @@
  * Created by Denis on 08.11.2017.
  */
 
-console.log(href);
 //Глобальные переменные
 var countOfPair = 6,
-    name = "Bubusik",
+    name = "unnouwn",
     theme = "numbers",
-    skin = "hearthstone",
-    counterTryes = 0,
-    selected = null,
-    counter = 0,
-    disableSelect = true,
     timerId,
+    counterTryes = 0,
+    counter = 0,
+    selected = null,
     gameStarted = false,
     gamePaused = false,
     gameFinished = false,
+    disableSelect = true,
     disableBtnControl = false;
 
 var loc = window.location;
 var href = loc.href;
 var index = href.indexOf("player");
 
-console.log(index);
 if (index != -1) {
     var params = href.slice(index + 7);
     index = params.indexOf("&");
@@ -50,17 +47,17 @@ generateBoard(board);
 //Задать ширину стека удаленных карт
 var discardStack = document.querySelector(".discard-stack");
 var boardWidth = parseInt(getComputedStyle(board).width, 10);
-discardStack.style.width = boardWidth + "px";
+//discardStack.style.width = boardWidth + "px";
 
 //Задать ширину обвертки
 var wrapper = document.querySelector(".wrapper");
 var wrapperWidth = boardWidth + 204;
-wrapper.style.width = wrapperWidth + "px";
+//wrapper.style.width = wrapperWidth + "px";
 
 //Задать высоту панели
 var panel = document.querySelector(".panel");
 var wrapperHeight = parseInt(getComputedStyle(document.querySelector(".game-space")).height, 10);
-panel.style.height = wrapperHeight + "px";
+//panel.style.height = wrapperHeight + "px";
 
 //Выбрать набор элементов card в коллекцию
 var cards = document.getElementsByClassName("card");
@@ -143,6 +140,7 @@ btnControl.onclick = function () {
          gameFinished = false;
          */
     }
+    return false;
 };
 
 //Клик на restart
@@ -166,6 +164,7 @@ btnRestart.onclick = function () {
     gamePaused = false;
     gameFinished = false;
     disableBtnControl = false;
+    return false;
 };
 
 //Клик в пределах доски

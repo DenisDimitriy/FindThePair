@@ -2,14 +2,14 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
-    /*margin: -19px 0px 0px 0px;*/
 }
 
 .wrapper {
-    width: 900px;
+    width: 878px;
     margin: 0 auto;
     background-color: yellow;
 }
+
 
 .title {
     background-color: #555555;
@@ -21,59 +21,75 @@ body {
     font-size: 22px;
     color: #ffffff;
     text-align: center;
-    padding: 6px;
+    padding: 5px;
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-.menu {
-    background-color: #333;
+.navigation {
     text-align: center;
-    margin: 0;
-    padding: 0;
-}
-/*
-.menu ul {
-    margin: 0;
-    padding: 0;
-}
-
-.menu li {
-    display: inline-block;
-    padding-top: 10px;
-}
-*/
-.menu a {
-    display: inline-block;
-    padding: 5px 50px;
+    display: block;
+    padding: 5px;
+    margin: 5px;
     text-decoration: none;
     color: #dddddd;
-    font-size: 18px;
+    background-color: #0a510a;
+    font-size: 16px;
     text-transform: uppercase;
     vertical-align: middle;
     letter-spacing: 3px;
+    border: 0;
+    border-radius: 10px;
 }
 
-.menu a:visited {
+.navigation:visited {
     color: #dddddd;
 }
 
-.menu a:hover {
+.navigation:hover {
     color: #ffffff;
-    background-color: #222;
+    background-color: #07220a;
 }
 
-.menu a.current {
-    color: #ffffff;
-    background-color: #222;
+.timer {
+    color: #fff;
+    background-color: #0a510a;
+    font-size: 30px;
+    text-align: center;
+    display: block;
+    padding: 5px;
+    margin: 5px;
+    vertical-align: middle;
+    border: 0;
+    border-radius: 10px;
 }
 
-
-
-
+.btn-control, .btn-restart {
+    text-align: center;
+    display: block;
+    padding: 5px;
+    margin: 5px;
+    color: #dddddd;
+    text-decoration: none;
+    background-color: #0a510a;
+    font-size: 14px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    border: 0;
+    border-radius: 10px;
+}
 
 .game-space {
     position: relative;
     float: left;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.wrapper-board {
+    height: 454px;
 }
 
 .board {
@@ -84,7 +100,8 @@ body {
     -ms-user-select: none;
     background-color: #828dff;
     font-size: 0;
-    padding: 2px;
+    padding: 3px;
+    margin: 0 auto;
 }
 
 .card, .spacer {
@@ -130,24 +147,25 @@ body {
 }
 
 /* лицевая сторона размещена над обратной */
-.front {
+.back {
     z-index: 2;
 }
 
 /* обратная, изначально скрытая сторона */
-.back {
+.front {
     transform: rotateY(180deg);
 }
 
 .discard-stack {
+    width: 672px;
     background-color: #3a3ca0;
     font-size: 0;
     height: 112px;
-    padding: 2px;
+    padding: 3px;
 }
 
 .footer {
-    height: 70px;
+    height: 35px;
     background-color: #333;
 }
 
@@ -191,6 +209,7 @@ body {
     float: left;
     background-color: green;
     width: 200px;
+    height: 572px;
 }
 
 .clearfix {
