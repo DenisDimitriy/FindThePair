@@ -1,3 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /*margin: -19px 0px 0px 0px;*/
+}
+
+.wrapper {
+    width: 900px;
+    margin: 0 auto;
+    background-color: yellow;
+}
+
+.title {
+    background-color: #555555;
+    margin: 0;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 22px;
+    color: #ffffff;
+    text-align: center;
+    padding: 6px;
+    letter-spacing: 2px;
+}
+
+.menu {
+    background-color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+/*
+.menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline-block;
+    padding-top: 10px;
+}
+*/
+.menu a {
+    display: inline-block;
+    padding: 5px 50px;
+    text-decoration: none;
+    color: #dddddd;
+    font-size: 18px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    letter-spacing: 3px;
+}
+
+.menu a:visited {
+    color: #dddddd;
+}
+
+.menu a:hover {
+    color: #ffffff;
+    background-color: #222;
+}
+
+.menu a.current {
+    color: #ffffff;
+    background-color: #222;
+}
+
+
+
+
+
 .game-space {
     position: relative;
     float: left;
@@ -9,19 +82,18 @@
     -moz-user-select: none;
     /* поэтому нужны префиксы */
     -ms-user-select: none;
-    background-color: aquamarine;
+    background-color: #828dff;
     font-size: 0;
-    margin: 10px;
+    padding: 2px;
 }
 
-.card, .spacer{
+.card, .spacer {
     display: inline-block;
     background-color: transparent;
     height: 102px;
     width: 102px;
     margin: 5px;
 }
-
 
 /** АНИМАЦИЯ ПЕРЕВОРОТА КАРТ */
 
@@ -33,7 +105,7 @@
 }
 
 /* перевернуть сторону  (.flip-container:hover .flipper, , .flip-container.flip .flipper) */
-.flip-container.hover .flipper{
+.flip-container.hover .flipper {
     transform: rotateY(180deg);
 }
 
@@ -68,16 +140,18 @@
 }
 
 .discard-stack {
-    background-color: #a0a0a0;
+    background-color: #3a3ca0;
     font-size: 0;
-    margin: 10px;
+    height: 112px;
+    padding: 2px;
 }
 
 .footer {
-    height: 1000px;
+    height: 70px;
+    background-color: #333;
 }
 
-.small{
+.small {
     width: 52px;
     height: 52px;
     margin: 2px;
@@ -114,5 +188,19 @@
 }
 
 .panel {
-    float:left;
+    float: left;
+    background-color: green;
+    width: 200px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.btn-control {
+    display: block;
+}
+
+.btn-restart {
+    display: block;
 }

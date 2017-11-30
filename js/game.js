@@ -1,12 +1,13 @@
 /**
  * Created by Denis on 08.11.2017.
  */
+
+console.log(href);
 //Глобальные переменные
 var countOfPair = 6,
-    name = "Vasya",
+    name = "Bubusik",
     theme = "numbers",
     skin = "hearthstone",
-
     counterTryes = 0,
     selected = null,
     counter = 0,
@@ -16,6 +17,27 @@ var countOfPair = 6,
     gamePaused = false,
     gameFinished = false,
     disableBtnControl = false;
+
+var loc = window.location;
+var href = loc.href;
+var index = href.indexOf("player");
+
+console.log(index);
+if (index != -1) {
+    var params = href.slice(index + 7);
+    index = params.indexOf("&");
+    var player = params.slice(0, index);
+    index = href.indexOf("boardsize");
+    params = href.slice(index + 10);
+    index = params.indexOf("&");
+    var size = params.slice(0, index);
+    index = href.indexOf("theme");
+    params = href.slice(index + 6);
+    countOfPair = +size;
+    name = player;
+    theme = params;
+}
+
 
 /* КОНФИГУРИРОВАНИЕ */
 
@@ -27,7 +49,18 @@ generateBoard(board);
 
 //Задать ширину стека удаленных карт
 var discardStack = document.querySelector(".discard-stack");
-discardStack.style.width = parseInt(getComputedStyle(board).width, 10) + "px";
+var boardWidth = parseInt(getComputedStyle(board).width, 10);
+discardStack.style.width = boardWidth + "px";
+
+//Задать ширину обвертки
+var wrapper = document.querySelector(".wrapper");
+var wrapperWidth = boardWidth + 204;
+wrapper.style.width = wrapperWidth + "px";
+
+//Задать высоту панели
+var panel = document.querySelector(".panel");
+var wrapperHeight = parseInt(getComputedStyle(document.querySelector(".game-space")).height, 10);
+panel.style.height = wrapperHeight + "px";
 
 //Выбрать набор элементов card в коллекцию
 var cards = document.getElementsByClassName("card");
@@ -91,24 +124,24 @@ btnControl.onclick = function () {
     if (gameFinished) {
 
         /*
-        //Рестарт игры
-        board.innerHTML = null;
-        timer.innerHTML = null;
-        discardStack.innerHTML = null;
-        generateBoard(board);
-        cards = document.getElementsByClassName("card");
-        initCards(cards);
-        initTimer(timer);
-        btnControl.innerHTML = "Start";
+         //Рестарт игры
+         board.innerHTML = null;
+         timer.innerHTML = null;
+         discardStack.innerHTML = null;
+         generateBoard(board);
+         cards = document.getElementsByClassName("card");
+         initCards(cards);
+         initTimer(timer);
+         btnControl.innerHTML = "Start";
 
-        selected = null;
-        counter = 0;
-        disableSelect = true;
-        timerId = null;
-        gameStarted = false;
-        gamePaused = false;
-        gameFinished = false;
-        */
+         selected = null;
+         counter = 0;
+         disableSelect = true;
+         timerId = null;
+         gameStarted = false;
+         gamePaused = false;
+         gameFinished = false;
+         */
     }
 };
 
@@ -189,3 +222,22 @@ board.onclick = function (event) {
     }
     return false;
 };
+
+
+/*
+ var params = window
+ .location
+ .search
+ .replace('?','')
+ .split('&')
+ .reduce(
+ function(p,e){
+ var a = e.split('=');
+ p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+ return p;
+ },
+ {}
+ );
+
+ alert( params['data']);
+ */

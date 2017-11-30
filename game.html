@@ -8,18 +8,36 @@
 </head>
 <body>
 
-<div class="message">The game is started</div>
-<div class="game-space">
-    <div class="board"></div>
-    <div class="discard-stack"></div>
-</div>
-<div class="panel">
-    <div class="timer">Time</div><br>
-    <button class="btn-control">Start</button>
-    <button class="btn-restart">Restart</button>
-</div>
+<div class="wrapper">
 
-<div class="footer"></div>
+    <div class="header">
+        <div class="title">
+            <h1>Find the pair</h1>
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href=# class="current">Game</a>
+            <a href="scores.html">Score</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="game-space">
+            <div class="board"></div>
+            <div class="discard-stack"></div>
+        </div>
+        <div class="panel">
+            <div class="timer">Time</div>
+            <br>
+            <button class="btn-control">Start</button>
+            <button class="btn-restart">Restart</button>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="footer"></div>
+
+</div>
 
 <script src="js\game.js"></script>
 </body>
