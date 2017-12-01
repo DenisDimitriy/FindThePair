@@ -51,8 +51,18 @@ var boardWidth = parseInt(getComputedStyle(board).width, 10);
 
 //Задать ширину обвертки
 var wrapper = document.querySelector(".wrapper");
-var wrapperWidth = boardWidth + 204;
+//var wrapperWidth = boardWidth + 204;
 //wrapper.style.width = wrapperWidth + "px";
+
+
+var wrapperBoard = document.querySelector(".wrapper-board");
+if (countOfPair == 6){
+    console.log("if works");
+    wrapperBoard.style.paddingTop = '56px';
+    wrapperBoard.style.paddingBottom = '56px';
+}
+
+
 
 //Задать высоту панели
 var panel = document.querySelector(".panel");

@@ -81,10 +81,6 @@ function removeCard(element) {
     var newElement1 = element.cloneNode(true);
     var newElement2 = element.cloneNode(true);
 
-    //Удалить исходную карту
-    element.innerHTML = null;
-    element.className = "spacer";
-
     //Поместить клон 1 в игровое пространство
     newElement1.classList.add("avatar");
     gameSpace.appendChild(newElement1);
@@ -131,6 +127,10 @@ function removeCard(element) {
         }, 500)
 
     }, 1000);
+
+    //Удалить исходную карту
+    element.innerHTML = null;
+    element.className = "spacer";
 
     return newElement2;
 }
