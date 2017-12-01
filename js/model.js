@@ -225,6 +225,11 @@ function stopTimer(timerId) {
 function finishGame(name, countOfPair, counterTryes) {
     var records;
 
+    setTimeout(function(){
+        var wrapperBoard = document.querySelector(".wrapper-board");
+        wrapperBoard.classList.add("hidden");
+    }, 1500);
+
     var dateNew = new Date();
     var day = +dateNew.getDate();
     var month = +dateNew.getMonth() + 1;

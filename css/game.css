@@ -95,7 +95,6 @@ body {
     border: 0;
     margin: 0;
     vertical-align: middle;
-    background-image: url("../img/themes/superheroes/superheroes.png");
     background-size: 100% 80%;
 }
 
@@ -255,4 +254,8 @@ body {
 }
 .footer p {
     margin-top: 8px;
+}
+
+.hidden {
+    background-color: transparent;
 }

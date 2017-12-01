@@ -14,7 +14,8 @@ var countOfPair = 6,
     gamePaused = false,
     gameFinished = false,
     disableSelect = true,
-    disableBtnControl = false;
+    disableBtnControl = false,
+    disableBtnRestart = false;
 
 var loc = window.location;
 var href = loc.href;
@@ -56,17 +57,19 @@ var wrapper = document.querySelector(".wrapper");
 
 
 var wrapperBoard = document.querySelector(".wrapper-board");
-if (countOfPair == 6){
+if (countOfPair == 6) {
     console.log("if works");
     wrapperBoard.style.paddingTop = '56px';
     wrapperBoard.style.paddingBottom = '56px';
 }
 
+var gameSpace = document.querySelector(".game-space");
+gameSpace.style.backgroundImage = 'url("img/themes/' + theme + '/background.png")';
 
 
 //Задать высоту панели
 var panel = document.querySelector(".panel");
-var wrapperHeight = parseInt(getComputedStyle(document.querySelector(".game-space")).height, 10);
+var wrapperHeight = parseInt(getComputedStyle(gameSpace).height, 10);
 //panel.style.height = wrapperHeight + "px";
 
 //Выбрать набор элементов card в коллекцию
@@ -95,6 +98,8 @@ btnControl.onclick = function () {
     //Если игра не начата
     if (!gameStarted) {
         disableBtnControl = true;
+
+        disableBtnRestart = true;
         gameStarted = true;
         btnControl.innerHTML = "Pause";
         //Открыть карты
@@ -109,6 +114,7 @@ btnControl.onclick = function () {
             disableSelect = false;
             timerId = startTimer(timer);
             disableBtnControl = false;
+            disableBtnRestart = false;
         }, 2000);
     }
     //если игра запущена, не закончена и не нажата пауза
@@ -155,6 +161,7 @@ btnControl.onclick = function () {
 
 //Клик на restart
 btnRestart.onclick = function () {
+    if(disableBtnControl) {return false};
     //Рестарт игры
     board.innerHTML = null;
     timer.innerHTML = null;
@@ -166,6 +173,7 @@ btnRestart.onclick = function () {
     btnControl.innerHTML = "Start";
     counterTryes = 0;
 
+    wrapperBoard.classList.remove("hidden");
     selected = null;
     counter = 0;
     disableSelect = true;
