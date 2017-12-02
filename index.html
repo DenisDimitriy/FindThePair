@@ -3,25 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Find the pair - Home</title>
+    <link rel="stylesheet" href="css\index.css">
 </head>
 <body>
+
+<div class="wrapper">
+
+    <div class="header">
+        <div class="title">
+            <h1>Find the pair</h1>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="form-space">
+            <div class="wrapper-form">
+                <form action="game.html" method="get" id="form-options">
+                    <div class="name-option">
+                        <p>
+                            Enter your nickname
+                        </p>
+                        <input title="player" type="text" name="player" value="unknown">
+                    </div>
+                    <div class="size-option">
+                        <p>
+                            Choose the size of board
+                        </p>
+                        <input title="size" type="radio" name="boardsize" value="6" checked>
+                        <input title="size" type="radio" name="boardsize" value="8">
+                        <input title="size" type="radio" name="boardsize" value="10">
+                        <input title="size" type="radio" name="boardsize" value="12">
+                    </div>
+                    <div class="theme-option">
+                        <p>
+                            Choose the theme
+                        </p>
+                        <input title="theme" type="radio" name="theme" value="numbers" checked>
+                        <input title="theme" type="radio" name="theme" value="superheroes">
+                        <!--select title="theme" name="theme">
+                            <option value="numbers" disabled>Choose the theme</option>
+                            <option selected value="numbers">Numbers</option>
+                            <option value="superheroes">Heroes</option>
+                        </select-->
+                    </div>
+                    <!--input type="submit" value="Play"-->
+                </form>
+
+            </div>
+        </div>
+
+        <div class="panel">
+            <a class="btn" href="#" id="submit-options">Play</a>
+            <a class="btn" href="scores.html">Scores</a>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="footer">
+        <p>Copyright</p>
+    </div>
+
+</div>
+
+<!--input type="submit" value="Play" id="submit-play" />
+<label for="submit-play">Submit</label>
+
 <h1>Find the Pair</h1>
 
 <a href=#>Home</a>
-<a href="scores.html">Score</a>
-<form action="game.html" method="get">
-    <input title="player" type="text" name="player" value="unknown">
-    <input title="size" type="radio" name="boardsize" value="6" checked>
-    <input title="size" type="radio" name="boardsize" value="8">
-    <input title="size" type="radio" name="boardsize" value="10">
-    <input title="size" type="radio" name="boardsize" value="12">
-    <select title="theme" name="theme">
-        <option value="numbers" disabled>Choose the theme</option>
-        <option selected value="numbers">Numbers</option>
-        <option value="superheroes">Heroes</option>
-    </select>
-    <input type="submit" value="Play">
-</form>
+<a href="scores.html">Score</a-->
+
+<script src="js\index.js"></script>
 
 </body>
 </html>

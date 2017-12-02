@@ -11,6 +11,12 @@ var btnClearLS = document.querySelector(".btn-clearLS");
 
 btnClearLS.onclick = function () {
     localStorage.clear();
+    table6.innerHTML = null;
+    table8.innerHTML = null;
+    table10.innerHTML = null;
+    table12.innerHTML = null;
+    generateTables ();
+    return false;
 };
 
 function generateTables () {
@@ -130,5 +136,6 @@ btnRefresh.onclick = function () {
     table10.innerHTML = null;
     table12.innerHTML = null;
     generateTables ();
+    return false;
 };
 

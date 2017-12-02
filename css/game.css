@@ -35,7 +35,7 @@ body {
     text-shadow: 0 0 20px black;
 }
 
-.navigation {
+.btn {
     text-align: center;
     display: block;
     padding: 5px;
@@ -51,11 +51,11 @@ body {
     border-radius: 10px;
 }
 
-.navigation:visited {
+.btn:visited {
     color: #dddddd;
 }
 
-.navigation:hover {
+.btn:hover {
     color: #ffffff;
     background-color: #07220a;
 }
@@ -74,18 +74,7 @@ body {
 }
 
 .btn-control, .btn-restart {
-    text-align: center;
-    display: block;
-    padding: 5px;
-    margin: 15px;
-    color: #dddddd;
-    text-decoration: none;
-    background-color: #0a510a;
     font-size: 26px;
-    text-transform: uppercase;
-    vertical-align: middle;
-    border: 0;
-    border-radius: 10px;
 }
 
 .game-space {
@@ -227,14 +216,6 @@ body {
 
 .clearfix {
     clear: both;
-}
-
-.btn-control {
-    display: block;
-}
-
-.btn-restart {
-    display: block;
 }
 
 .wrapper-stack {

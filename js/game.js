@@ -2,6 +2,10 @@
  * Created by Denis on 08.11.2017.
  */
 
+
+
+//СЦЕНАРИЙ
+
 //Глобальные переменные
 var countOfPair = 6,
     name = "unnouwn",
@@ -16,6 +20,7 @@ var countOfPair = 6,
     disableSelect = true,
     disableBtnControl = false,
     disableBtnRestart = false;
+
 
 var loc = window.location;
 var href = loc.href;
@@ -58,7 +63,6 @@ var wrapper = document.querySelector(".wrapper");
 
 var wrapperBoard = document.querySelector(".wrapper-board");
 if (countOfPair == 6) {
-    console.log("if works");
     wrapperBoard.style.paddingTop = '56px';
     wrapperBoard.style.paddingBottom = '56px';
 }
@@ -95,15 +99,15 @@ var btnRestart = document.querySelector(".btn-restart");
 //Обработчики событий
 //Клик на кнопку управления
 btnControl.onclick = function () {
+    console.log (gameStarted + " | " + disableBtnControl);
     //Если игра не начата
     if (!gameStarted) {
         disableBtnControl = true;
-
         disableBtnRestart = true;
         gameStarted = true;
         btnControl.innerHTML = "Pause";
         //Открыть карты
-        for (i = 0; i < cards.length; i++) {
+        for (var i = 0; i < cards.length; i++) {
             openCard(cards[i]);
         }
         //Через время открыть все карты, разрешить выбор карт, запустить таймер
@@ -161,7 +165,7 @@ btnControl.onclick = function () {
 
 //Клик на restart
 btnRestart.onclick = function () {
-    if(disableBtnControl) {return false};
+    if(disableBtnRestart) {return false};
     //Рестарт игры
     board.innerHTML = null;
     timer.innerHTML = null;
@@ -231,8 +235,14 @@ board.onclick = function (event) {
                     gameFinished = true;
                     btnControl.innerHTML = "Start";
                     disableSelect = true;
+                    disableBtnRestart = true;
+                    setTimeout(function(){
+                        disableBtnRestart = false;
+                    }, 1500);
+
                     stopTimer(timerId);
                     finishGame(name, countOfPair, counterTryes);
+
                 }
             }
         }
@@ -258,3 +268,5 @@ board.onclick = function (event) {
 
  alert( params['data']);
  */
+
+
