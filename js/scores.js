@@ -28,16 +28,16 @@ function generateTables () {
 
     for (var i = 0; i < records.length; i++) {
         if (records[i].size == 6) {
-            records6.push(records[i]);
+            records6.unshift(records[i]);
         }
         if (records[i].size == 8) {
-            records8.push(records[i]);
+            records8.unshift(records[i]);
         }
         if (records[i].size == 10) {
-            records10.push(records[i]);
+            records10.unshift(records[i]);
         }
         if (records[i].size == 12) {
-            records12.push(records[i]);
+            records12.unshift(records[i]);
         }
     }
 
