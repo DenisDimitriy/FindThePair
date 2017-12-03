@@ -8,7 +8,7 @@ body {
 .wrapper {
     width: 881px;
     margin: 0 auto;
-    background-color: yellow;
+    background-color:#370037;
     box-shadow: 0 0 50px 10px #000;
     border: solid black 1px;
 }
@@ -49,6 +49,14 @@ body {
     letter-spacing: 3px;
     border: 0;
     border-radius: 10px;
+
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+
+    -ms-user-select: none;
 }
 
 .btn:visited {

@@ -35,6 +35,129 @@ body {
     text-shadow: 0 0 20px black;
 }
 
+.form-space {
+    text-align: center;
+}
+
+.form-space p {
+    margin-top: 60px;
+    color: #b46dff;
+    font-size: 24px;
+
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+
+    -ms-user-select: none;
+}
+
+.input-name {
+    border-radius: 15px;
+    border: solid 2px #770077;
+    font-size: 20px;
+    padding-left: 10px;
+    width: 300px;
+    text-align: center;
+    color: #7e00cc;
+    outline:none;
+}
+
+.input-name:focus::-webkit-input-placeholder { color:transparent; }
+.input-name:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+.input-name:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+.input-name:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+.input-name:focus {
+    box-shadow: 0 0 10px 2px fuchsia;
+}
+
+
+.input-size {
+    width: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+}
+
+.input-size[type="radio"] + label {
+    display: inline-block;
+    color: #ff9cfd;
+    font-size: 26px;
+    width: 75px;
+
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+
+    -ms-user-select: none;
+}
+
+.input-size[type="radio"]:checked + label {
+    font-weight: bold;
+    font-size: 28px;
+    color: #fff;
+    text-shadow: 0 0 5px fuchsia;
+}
+
+.input-size[type="radio"] + label:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+
+.input-theme {
+    width: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+}
+
+.input-theme[type="radio"] + label {
+    display: inline-block;
+    font-size: 0;
+    width: 75px;
+    height: 75px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 0;
+    border-radius: 5px;
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+
+    -ms-user-select: none;
+}
+
+.input-theme[type="radio"]:checked + label {
+    box-shadow: 0 0 10px 2px fuchsia;
+}
+
+.input-theme[type="radio"] + label:hover{
+    cursor: pointer;
+}
+
+#theme-numbers[type="radio"] + label  {
+    background-image: url("../img/themes/numbers/back-side.png");
+    background-size: cover;
+}
+
+#theme-superheroes[type="radio"] + label  {
+    background-image: url("../img/themes/superheroes/back-side.png");
+    background-size: cover;
+}
+
+
+
+
+
 .btn {
     text-align: center;
     display: block;
@@ -49,6 +172,14 @@ body {
     letter-spacing: 3px;
     border: 0;
     border-radius: 10px;
+
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+
+    -ms-user-select: none;
 }
 
 .btn:visited {
@@ -79,7 +210,7 @@ body {
     padding: 0;
     border: 0;
     margin: 0;
-    width:680px;
+    width: 680px;
     height: 577px;
     background-color: #370037;
     box-shadow: inset 0 10px 100px 10px #000;
@@ -107,6 +238,7 @@ body {
     color: #999;
     /*vertical-align: middle;*/
 }
+
 .footer p {
     margin-top: 8px;
 }

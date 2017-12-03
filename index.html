@@ -23,23 +23,30 @@
                         <p>
                             Enter your nickname
                         </p>
-                        <input title="player" type="text" name="player" value="unknown">
+                        <input class="input-name" title="player" type="text" name="player" placeholder="Unknown">
                     </div>
                     <div class="size-option">
                         <p>
-                            Choose the size of board
+                            Choose the count of cards
                         </p>
-                        <input title="size" type="radio" name="boardsize" value="6" checked>
-                        <input title="size" type="radio" name="boardsize" value="8">
-                        <input title="size" type="radio" name="boardsize" value="10">
-                        <input title="size" type="radio" name="boardsize" value="12">
+                        <input class="input-size" id="size-6" title="size" type="radio" name="boardsize" value="6" checked>
+                        <label for="size-6">6x6</label>
+                        <input class="input-size" id="size-8" title="size" type="radio" name="boardsize" value="8">
+                        <label for="size-8">8x8</label>
+                        <input class="input-size" id="size-10" title="size" type="radio" name="boardsize" value="10">
+                        <label for="size-10">10x10</label>
+                        <input class="input-size" id="size-12" title="size" type="radio" name="boardsize" value="12">
+                        <label for="size-12">12x12</label>
+
                     </div>
                     <div class="theme-option">
                         <p>
                             Choose the theme
                         </p>
-                        <input title="theme" type="radio" name="theme" value="numbers" checked>
-                        <input title="theme" type="radio" name="theme" value="superheroes">
+                        <input class="input-theme" id="theme-numbers" title="theme" type="radio" name="theme" value="numbers" checked>
+                        <label for="theme-numbers"></label>
+                        <input class="input-theme" id="theme-superheroes" title="theme" type="radio" name="theme" value="superheroes">
+                        <label for="theme-superheroes"></label>
                         <!--select title="theme" name="theme">
                             <option value="numbers" disabled>Choose the theme</option>
                             <option selected value="numbers">Numbers</option>

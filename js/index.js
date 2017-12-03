@@ -7,3 +7,8 @@ var submitOptions = document.querySelector("#submit-options");
 submitOptions.onclick = function () {
     formOptions.submit()
 };
+
+var inputName = document.querySelector(".input-name");
+inputName.onfocus = function () {
+
+}

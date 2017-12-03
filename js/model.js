@@ -228,7 +228,7 @@ function finishGame(name, countOfPair, counterTryes) {
     setTimeout(function(){
         var wrapperBoard = document.querySelector(".wrapper-board");
         wrapperBoard.classList.add("hidden");
-    }, 1500);
+    }, 1200);
 
     var dateNew = new Date();
     var day = +dateNew.getDate();
@@ -260,7 +260,7 @@ function finishGame(name, countOfPair, counterTryes) {
         recordsNew.push(newRecord);
         var recordsNewString = JSON.stringify(recordsNew); //сериализуем его
         localStorage.removeItem("records");
-        localStorage.setItem("records", recordsNewString); //запишем его в хранилище по ключу "myKey"
+        localStorage.setItem("records", recordsNewString); //запишем его в хранилище по ключу "records"
 
     }
     else {
@@ -271,18 +271,3 @@ function finishGame(name, countOfPair, counterTryes) {
         localStorage.setItem("records", recordsString);
     }
 }
-
-/*
- //создадим объект
- var obj = {
- item1: 1,
- item2: [123, "two", 3.0],
- item3:"hello"
- };
-
- var serialObj = JSON.stringify(obj); //сериализуем его
-
- localStorage.setItem("myKey", serialObj); //запишем его в хранилище по ключу "myKey"
-
- var returnObj = JSON.parse(localStorage.getItem("myKey")) //спарсим его обратно объект
- */

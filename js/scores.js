@@ -47,16 +47,19 @@ function generateTables () {
         var dateString = records6[i].date.day + "." + records6[i].date.month + "." + records6[i].date.year;
         var tdDate = document.createElement("td");
         tdDate.innerHTML = dateString;
+        tdDate.className = "td-date";
         rowNew.appendChild(tdDate);
 
         var nameString = records6[i].name;
         var tdName = document.createElement("td");
         tdName.innerHTML = nameString;
+        tdName.className = "td-name";
         rowNew.appendChild(tdName);
 
         var ScoresString = records6[i].scores;
         var tdScores = document.createElement("td");
         tdScores.innerHTML = ScoresString;
+        tdScores.className = "td-scores";
         rowNew.appendChild(tdScores);
 
         table6.appendChild(rowNew);
@@ -68,16 +71,19 @@ function generateTables () {
         dateString = records8[i].date.day + "." + records8[i].date.month + "." + records8[i].date.year;
         tdDate = document.createElement("td");
         tdDate.innerHTML = dateString;
+        tdDate.className = "td-date";
         rowNew.appendChild(tdDate);
 
         nameString = records8[i].name;
         tdName = document.createElement("td");
         tdName.innerHTML = nameString;
+        tdName.className = "td-name";
         rowNew.appendChild(tdName);
 
         ScoresString = records8[i].scores;
         tdScores = document.createElement("td");
         tdScores.innerHTML = ScoresString;
+        tdScores.className = "td-scores";
         rowNew.appendChild(tdScores);
 
         table8.appendChild(rowNew);
@@ -89,16 +95,19 @@ function generateTables () {
         dateString = records10[i].date.day + "." + records10[i].date.month + "." + records10[i].date.year;
         tdDate = document.createElement("td");
         tdDate.innerHTML = dateString;
+        tdDate.className = "td-date";
         rowNew.appendChild(tdDate);
 
         nameString = records10[i].name;
         tdName = document.createElement("td");
         tdName.innerHTML = nameString;
+        tdName.className = "td-name";
         rowNew.appendChild(tdName);
 
         ScoresString = records10[i].scores;
         tdScores = document.createElement("td");
         tdScores.innerHTML = ScoresString;
+        tdScores.className = "td-scores";
         rowNew.appendChild(tdScores);
 
         table10.appendChild(rowNew);
@@ -111,16 +120,19 @@ function generateTables () {
         dateString = records12[i].date.day + "." + records12[i].date.month + "." + records12[i].date.year;
         tdDate = document.createElement("td");
         tdDate.innerHTML = dateString;
+        tdDate.className = "td-date";
         rowNew.appendChild(tdDate);
 
         nameString = records12[i].name;
         tdName = document.createElement("td");
         tdName.innerHTML = nameString;
+        tdName.className = "td-name";
         rowNew.appendChild(tdName);
 
         ScoresString = records12[i].scores;
         tdScores = document.createElement("td");
         tdScores.innerHTML = ScoresString;
+        tdScores.className = "td-scores";
         rowNew.appendChild(tdScores);
 
         table12.appendChild(rowNew);

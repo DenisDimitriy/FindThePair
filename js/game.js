@@ -8,7 +8,7 @@
 
 //Глобальные переменные
 var countOfPair = 6,
-    name = "unnouwn",
+    name = "unknown",
     theme = "numbers",
     timerId,
     counterTryes = 0,
@@ -30,6 +30,7 @@ if (index != -1) {
     var params = href.slice(index + 7);
     index = params.indexOf("&");
     var player = params.slice(0, index);
+    if(player=="") player = "unknown";
     index = href.indexOf("boardsize");
     params = href.slice(index + 10);
     index = params.indexOf("&");
