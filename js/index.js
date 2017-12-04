@@ -4,25 +4,23 @@
 
 var formOptions = document.querySelector("#form-options");
 var submitOptions = document.querySelector("#submit-options");
-submitOptions.onclick = function () {
-    formOptions.submit()
-};
 
-var inputName = document.querySelector(".input-name");
+//var inputName = document.querySelector(".input-name");
+/*
+ formOptions.onsubmit = function () {
+ validate();
+ return false;
+ };
+ */
+/*
+ function validate() {
+ var valid;
+ var string = inputName.value;
 
-formOptions.onsubmit = function () {
-    validate();
-    return false;
-};
-
-function validate() {
-    var valid;
-    var string = inputName.value;
-
-    console.log(inputName.value);
-    return valid;
-}
-
+ console.log(inputName.value);
+ return valid;
+ }
+ */
 
 var form = formOptions,
     field = form.querySelector('.input-name'),
@@ -52,6 +50,12 @@ form.onsubmit = function (event) {
 
 };
 
+
+
+submitOptions.onclick = function () {
+    var event = new Event("submit");
+    form.dispatchEvent(event);
+};
 
 /*
  var	form = formOptions,
