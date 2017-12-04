@@ -30,7 +30,15 @@ if (index != -1) {
     var params = href.slice(index + 7);
     index = params.indexOf("&");
     var player = params.slice(0, index);
+    index = player.indexOf("+");
+    while (index != -1){
+        var string = player.slice(0, index) + ' ' + player.slice(index + 1);
+        player = string;
+        index = player.indexOf("+");
+    }
+
     if(player=="") player = "unknown";
+
     index = href.indexOf("boardsize");
     params = href.slice(index + 10);
     index = params.indexOf("&");

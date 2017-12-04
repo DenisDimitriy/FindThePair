@@ -24,12 +24,15 @@
                             Enter your nickname
                         </p>
                         <input class="input-name" title="player" type="text" name="player" placeholder="Unknown">
+                        <p class="notice">Nickname can contain letters of Latin and Cyrillic, numbers, signs "space" and
+                            "dash"</p>
                     </div>
                     <div class="size-option">
                         <p>
                             Choose the count of cards
                         </p>
-                        <input class="input-size" id="size-6" title="size" type="radio" name="boardsize" value="6" checked>
+                        <input class="input-size" id="size-6" title="size" type="radio" name="boardsize" value="6"
+                               checked>
                         <label for="size-6">6x6</label>
                         <input class="input-size" id="size-8" title="size" type="radio" name="boardsize" value="8">
                         <label for="size-8">8x8</label>
@@ -43,9 +46,11 @@
                         <p>
                             Choose the theme
                         </p>
-                        <input class="input-theme" id="theme-numbers" title="theme" type="radio" name="theme" value="numbers" checked>
+                        <input class="input-theme" id="theme-numbers" title="theme" type="radio" name="theme"
+                               value="numbers" checked>
                         <label for="theme-numbers"></label>
-                        <input class="input-theme" id="theme-superheroes" title="theme" type="radio" name="theme" value="superheroes">
+                        <input class="input-theme" id="theme-superheroes" title="theme" type="radio" name="theme"
+                               value="superheroes">
                         <label for="theme-superheroes"></label>
                         <!--select title="theme" name="theme">
                             <option value="numbers" disabled>Choose the theme</option>
@@ -57,6 +62,9 @@
                 </form>
 
             </div>
+
+            <span id="required"></span>
+
         </div>
 
         <div class="panel">
