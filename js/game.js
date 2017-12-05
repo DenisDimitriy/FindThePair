@@ -126,6 +126,8 @@ var btnControl = document.querySelector(".btn-control");
 //Выбрать блок кнопки управления
 var btnRestart = document.querySelector(".btn-restart");
 
+var cover = document.querySelector(".cover");
+
 /*СЦЕНАРИЙ ИГРЫ*/
 
 //Обработчики событий
@@ -152,6 +154,8 @@ btnControl.onclick = function () {
             disableBtnControl = false;
             disableBtnRestart = false;
         }, 2000);
+
+        btnControl.classList.remove("btn-start");
     }
     //если игра запущена, не закончена и не нажата пауза
     else if (!gamePaused && !gameFinished && !disableBtnControl) {
@@ -160,6 +164,10 @@ btnControl.onclick = function () {
         btnControl.innerHTML = "Resume";
         disableSelect = true;
         stopTimer(timerId);
+        cover.classList.remove("finish");
+        cover.classList.add("pause");
+        cover.classList.remove("hidden");
+        cover.innerHTML = "pause";
     }
     //если игра запущена, не закончена и нажата пауза
     else if (gamePaused && !gameFinished && !disableBtnControl) {
@@ -168,6 +176,8 @@ btnControl.onclick = function () {
         btnControl.innerHTML = "Pause";
         disableSelect = false;
         timerId = startTimer(timer);
+        cover.classList.add("hidden");
+        cover.innerHTML = "";
     }
     //Если игра закончена
     if (gameFinished) {
@@ -212,7 +222,7 @@ btnRestart.onclick = function () {
     btnControl.innerHTML = "Start";
     counterTryes = 0;
 
-    wrapperBoard.classList.remove("hidden");
+    wrapperBoard.classList.remove("transparent");
     selected = null;
     counter = 0;
     disableSelect = true;
@@ -221,6 +231,11 @@ btnRestart.onclick = function () {
     gamePaused = false;
     gameFinished = false;
     disableBtnControl = false;
+
+    cover.classList.add("hidden");
+
+    btnControl.classList.remove("btn-disabled");
+    btnControl.classList.add("btn-start");
     return false;
 };
 

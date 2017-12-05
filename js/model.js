@@ -225,9 +225,15 @@ function stopTimer(timerId) {
 function finishGame(name, countOfPair, counterTryes) {
     var records;
 
+    btnControl.classList.add("btn-disabled");
     setTimeout(function(){
         var wrapperBoard = document.querySelector(".wrapper-board");
-        wrapperBoard.classList.add("hidden");
+        var cover = document.querySelector(".cover");
+        wrapperBoard.classList.add("transparent");
+        cover.classList.remove("pause");
+        cover.classList.add("finish");
+        cover.classList.remove("hidden");
+        cover.innerHTML = "";
     }, 1200);
 
     var dateNew = new Date();
