@@ -242,7 +242,30 @@ function finishGame(name, countOfPair, counterTryes) {
     var decisec = timer.querySelector(".decisec");
     var time = decisec.dataset.decisec;
 
-    var scores = (countOfPair * 10000) / (time * counterTryes);
+    var k1, k2;
+
+    switch (countOfPair) {
+        case 6:
+            k1 = 60;
+            k2 = 8;
+            break;
+        case 8:
+            k1 = 120;
+            k2 = 12;
+            break;
+        case 10:
+            k1 = 240;
+            k2 = 18;
+            break;
+        case 12:
+            k1 = 360;
+            k2 = 24;
+            break;
+    }
+
+    var scores = countOfPair * ( k1/time + k2/counterTryes );
+
+    scores = Math.round(scores*10)/10;
 
     var newRecord = {
         date: {day: day, month: month, year: year, hour: hour, minute: minute, second: second},

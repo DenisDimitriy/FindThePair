@@ -25,24 +25,19 @@ var submitOptions = document.querySelector("#submit-options");
 var form = formOptions,
     field = form.querySelector('.input-name'),
     msg = document.getElementById('required'),
-    regExp = [/^[A-Za-z0-9А-Яа-я\s-]+$/];
+    regExp = [/^[A-Za-z0-9А-Яа-я\s-]+$|^$/];
 //regExp = [/^[А-Яа-яЁё]+$/, /.+@.+\..+/i, /^[А-Яа-яЁё\W\s\d]+$/, /^[А-Яа-яЁё\W\s\d]+$/];
 
+var valid = true;
 form.onsubmit = function (event) {
-    var valid = true;
 
     event.preventDefault();
-
+/*
     field.classList.remove('invalid');
     if (!field.value.length) {
     }
-
-    field.classList.remove('invalid');
-    if (!field.value.match(regExp[0])) {
-        field.classList.add('invalid');
-        msg.innerHTML = 'Invalid nickname!';
-        valid = false;
-    }
+*/
+    validate();
 
     if (valid) {
         form.submit();
@@ -50,12 +45,45 @@ form.onsubmit = function (event) {
 
 };
 
-
-
 submitOptions.onclick = function () {
     var event = new Event("submit");
     form.dispatchEvent(event);
 };
+
+field.onblur = function () {
+    validate();
+};
+
+field.onfocus = function () {
+    validate();
+};
+
+
+if ("onpropertychange" in field) {
+    // старый IE
+    field.onpropertychange = function() {
+        validate();
+    };
+} else {
+    // остальные браузеры
+    field.oninput = function() {
+        validate();
+    };
+}
+
+
+function validate() {
+    valid = true;
+    msg.innerHTML = '';
+    field.classList.remove('invalid');
+    if (!field.value.match(regExp[0])) {
+        field.classList.add('invalid');
+        msg.innerHTML = 'Invalid nickname!';
+        valid = false;
+    }
+}
+
+
 
 /*
  var	form = formOptions,

@@ -30,14 +30,37 @@ if (index != -1) {
     var params = href.slice(index + 7);
     index = params.indexOf("&");
     var player = params.slice(0, index);
+
     index = player.indexOf("+");
-    while (index != -1){
+    while (index != -1) {
         var string = player.slice(0, index) + ' ' + player.slice(index + 1);
         player = string;
         index = player.indexOf("+");
     }
 
-    if(player=="") player = "unknown";
+
+    index = player.indexOf(" ");
+    while (index != -1) {
+        var partBefore = player.slice(0, index);
+        var partBehind = player.slice(index + 1);
+        console.log(partBefore.length + "|" + partBehind.length);
+
+        if (partBefore.length != 0) {
+            console.log("name");
+            break;
+        }
+        else if (partBehind.length == 0) {
+            player = "unknown";
+            break;
+        }
+        else {
+            player = partBehind;
+            console.log(player);
+            index = player.indexOf(" ");
+        }
+    }
+
+    if (player == "") player = "unknown";
 
     index = href.indexOf("boardsize");
     params = href.slice(index + 10);
@@ -108,7 +131,7 @@ var btnRestart = document.querySelector(".btn-restart");
 //Обработчики событий
 //Клик на кнопку управления
 btnControl.onclick = function () {
-    console.log (gameStarted + " | " + disableBtnControl);
+    console.log(gameStarted + " | " + disableBtnControl);
     //Если игра не начата
     if (!gameStarted) {
         disableBtnControl = true;
@@ -174,7 +197,10 @@ btnControl.onclick = function () {
 
 //Клик на restart
 btnRestart.onclick = function () {
-    if(disableBtnRestart) {return false};
+    if (disableBtnRestart) {
+        return false
+    }
+    ;
     //Рестарт игры
     board.innerHTML = null;
     timer.innerHTML = null;
@@ -245,7 +271,7 @@ board.onclick = function (event) {
                     btnControl.innerHTML = "Start";
                     disableSelect = true;
                     disableBtnRestart = true;
-                    setTimeout(function(){
+                    setTimeout(function () {
                         disableBtnRestart = false;
                     }, 1500);
 

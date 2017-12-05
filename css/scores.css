@@ -149,6 +149,15 @@ table {
 table td {
     background-color: #4f004f;
     color: #ff9cfd;
+    text-align: center;
+}
+
+.td-date {
+    width: 100px;
+}
+
+.td-name {
+    width: 350px;
 }
 
 
