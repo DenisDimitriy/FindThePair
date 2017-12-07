@@ -21,7 +21,9 @@ function getRandomPairArray(dimension) {
     return arrayRezult;
 }
 
-function generateBoard(board) {
+export {getRandomPairArray};
+
+function generateBoard(board, countOfPair) {
     //Определить значение ширины
     switch (countOfPair) {
         case 6:
@@ -54,10 +56,12 @@ function generateBoard(board) {
         board.appendChild(newCard);
     }
 
-    //return board;
 }
 
-function initCards(cards) {
+export {generateBoard};
+
+
+function initCards(cards, countOfPair, theme) {
 //Сгенерировать массив случайных пар чисел
     var RandomPairArray = getRandomPairArray(countOfPair);
 
@@ -70,6 +74,9 @@ function initCards(cards) {
         front.style.backgroundImage = 'url("img/themes/' + theme + '/' + cards[i].dataset.number + '.png")';
     }
 }
+
+export {initCards};
+
 
 function removeCard(element) {
 
@@ -135,13 +142,22 @@ function removeCard(element) {
     return newElement2;
 }
 
+export {removeCard};
+
+
 function openCard(element) {
     element.classList.add('hover');
 }
 
+export {openCard};
+
+
 function closeCard(element) {
     element.classList.remove('hover');
 }
+
+export {closeCard};
+
 
 function initTimer(timer) {
     timer.innerHTML = '';
@@ -171,6 +187,9 @@ function initTimer(timer) {
     timer.appendChild(second);
     timer.appendChild(decisec);
 }
+
+export {initTimer};
+
 
 function startTimer(timer) {
 
@@ -218,23 +237,44 @@ function startTimer(timer) {
     return timerId;
 }
 
+export {startTimer};
+
+
 function stopTimer(timerId) {
     clearInterval(timerId)
 }
 
-function finishGame(name, countOfPair, counterTryes) {
+export {stopTimer};
+
+
+function finishGame(
+    name, 
+    countOfPair, 
+    counterTryes,
+
+)
+{
     var records;
 
+    var btnControl = document.querySelector(".btn-control");
     btnControl.classList.add("btn-disabled");
+
+    var wrapperBoard = document.querySelector(".wrapper-board");
+    var cover = document.querySelector(".cover");
+
     setTimeout(function(){
-        var wrapperBoard = document.querySelector(".wrapper-board");
-        var cover = document.querySelector(".cover");
         wrapperBoard.classList.add("transparent");
         cover.classList.remove("pause");
         cover.classList.add("finish");
         cover.classList.remove("hidden");
         cover.innerHTML = "";
     }, 1200);
+
+    setTimeout(function(){
+        cover.classList.remove("finish");
+        cover.classList.add("hidden");
+        cover.innerHTML = "";
+    }, 3000);
 
     var dateNew = new Date();
     var day = +dateNew.getDate();
@@ -300,3 +340,5 @@ function finishGame(name, countOfPair, counterTryes) {
         localStorage.setItem("records", recordsString);
     }
 }
+
+export {finishGame};

@@ -144,20 +144,22 @@ table {
     font-size: 18px;
     margin-left: 10px;
     width: 548px;
+    table-layout: fixed;
 }
 
 table td {
     background-color: #4f004f;
     color: #ff9cfd;
     text-align: center;
+    overflow: hidden;
 }
 
 .td-date {
-    width: 100px;
+    width: 122px;
 }
 
 .td-name {
-    width: 350px;
+    width: 290px;
 }
 
 

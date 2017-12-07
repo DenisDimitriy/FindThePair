@@ -25,7 +25,7 @@ var submitOptions = document.querySelector("#submit-options");
 var form = formOptions,
     field = form.querySelector('.input-name'),
     msg = document.getElementById('required'),
-    regExp = [/^[A-Za-z0-9А-Яа-я\s-]+$|^$/];
+    regExp = [/^[A-Za-z0-9\s-]+$|^$/];
 //regExp = [/^[А-Яа-яЁё]+$/, /.+@.+\..+/i, /^[А-Яа-яЁё\W\s\d]+$/, /^[А-Яа-яЁё\W\s\d]+$/];
 
 var valid = true;

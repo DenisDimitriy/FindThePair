@@ -1,8 +1,18 @@
 /**
  * Created by Denis on 08.11.2017.
  */
-
-
+import {
+    getRandomPairArray,
+    generateBoard,
+    initCards,
+    removeCard,
+    openCard,
+    closeCard,
+    initTimer,
+    startTimer,
+    stopTimer,
+    finishGame
+} from './model';
 
 //СЦЕНАРИЙ
 
@@ -80,7 +90,7 @@ if (index != -1) {
 var board = document.querySelector(".board");
 
 //Сгенерировать доску с картами
-generateBoard(board);
+generateBoard(board, countOfPair);
 
 //Задать ширину стека удаленных карт
 var discardStack = document.querySelector(".discard-stack");
@@ -112,7 +122,7 @@ var wrapperHeight = parseInt(getComputedStyle(gameSpace).height, 10);
 var cards = document.getElementsByClassName("card");
 
 //Инициализировать карты
-initCards(cards);
+initCards(cards, countOfPair, theme);
 
 //Выбрать блок таймера
 var timer = document.querySelector(".timer");
@@ -187,9 +197,9 @@ btnControl.onclick = function () {
          board.innerHTML = null;
          timer.innerHTML = null;
          discardStack.innerHTML = null;
-         generateBoard(board);
+         generateBoard(board, countOfPair);
          cards = document.getElementsByClassName("card");
-         initCards(cards);
+         initCards(cards, countOfPair, theme);
          initTimer(timer);
          btnControl.innerHTML = "Start";
 
@@ -215,9 +225,9 @@ btnRestart.onclick = function () {
     board.innerHTML = null;
     timer.innerHTML = null;
     discardStack.innerHTML = null;
-    generateBoard(board);
+    generateBoard(board, countOfPair);
     cards = document.getElementsByClassName("card");
-    initCards(cards);
+    initCards(cards, countOfPair, theme);
     initTimer(timer);
     btnControl.innerHTML = "Start";
     counterTryes = 0;
