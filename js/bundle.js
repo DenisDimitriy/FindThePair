@@ -660,8 +660,7 @@ function stopTimer(timerId) {
 function finishGame(
     name, 
     countOfPair, 
-    counterTryes,
-
+    counterTryes
 )
 {
     var records;

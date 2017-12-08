@@ -162,7 +162,10 @@ p.notice {
     background-size: cover;
 }
 
-
+#theme-pets[type="radio"] + label  {
+    background-image: url("../img/themes/pets/back-side.png");
+    background-size: cover;
+}
 
 
 
