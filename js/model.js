@@ -250,8 +250,7 @@ export {stopTimer};
 function finishGame(
     name, 
     countOfPair, 
-    counterTryes,
-
+    counterTryes
 )
 {
     var records;

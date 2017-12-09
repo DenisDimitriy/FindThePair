@@ -220,7 +220,6 @@ btnRestart.onclick = function () {
     if (disableBtnRestart) {
         return false
     }
-    ;
     //Рестарт игры
     board.innerHTML = null;
     timer.innerHTML = null;
