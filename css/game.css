@@ -1,3 +1,51 @@
+
+/** АНИМАЦИЯ ПЕРЕВОРОТА КАРТ */
+
+/* контейнер поддерживает перспективу */
+.flip-container {
+    perspective: 350px;
+    width: 102px;
+    height: 102px;
+}
+
+/* перевернуть сторону  (.flip-container:hover .flipper, , .flip-container.flip .flipper) */
+.flip-container.hover .flipper {
+    transform: rotateY(180deg);
+}
+
+/* скорость перевертывания */
+.flipper {
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* скрыть обратную сторону во время переворота */
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border: black solid 1px;
+    border-radius: 5px;
+    background-size: cover;
+}
+
+/* лицевая сторона размещена над обратной */
+.back {
+    z-index: 2;
+}
+
+/* обратная, изначально скрытая сторона */
+.front {
+    transform: rotateY(180deg);
+}
+
+
+/** ОБЩИЕ СТИЛИ */
+
 body {
     margin: 0;
     padding: 0;
@@ -117,50 +165,6 @@ body {
     height: 102px;
     width: 102px;
     margin: 5px;
-}
-
-/** АНИМАЦИЯ ПЕРЕВОРОТА КАРТ */
-
-/* контейнер поддерживает перспективу */
-.flip-container {
-    perspective: 350px;
-    width: 102px;
-    height: 102px;
-}
-
-/* перевернуть сторону  (.flip-container:hover .flipper, , .flip-container.flip .flipper) */
-.flip-container.hover .flipper {
-    transform: rotateY(180deg);
-}
-
-/* скорость перевертывания */
-.flipper {
-    transition: 0.5s;
-    transform-style: preserve-3d;
-    position: relative;
-}
-
-/* скрыть обратную сторону во время переворота */
-.front, .back {
-    backface-visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100px;
-    border: black solid 1px;
-    border-radius: 5px;
-    background-size: cover;
-}
-
-/* лицевая сторона размещена над обратной */
-.back {
-    z-index: 2;
-}
-
-/* обратная, изначально скрытая сторона */
-.front {
-    transform: rotateY(180deg);
 }
 
 .discard-stack {
@@ -296,3 +300,4 @@ body {
 .btn-start {
     background-color: #6d1717;
 }
+

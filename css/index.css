@@ -1,3 +1,4 @@
+/** Общие стили */
 body {
     margin: 0;
     padding: 0;
@@ -58,7 +59,6 @@ p.notice {
     margin: 20px auto 0;
     font-size: 16px;
     width: 400px;
-
 }
 
 .input-name {
@@ -79,7 +79,6 @@ p.notice {
 .input-name:focus {
     box-shadow: 0 0 10px 2px fuchsia;
 }
-
 
 .input-size {
     width: 0;
@@ -113,11 +112,6 @@ p.notice {
 .input-size[type="radio"] + label:hover{
     cursor: pointer;
 }
-
-
-
-
-
 
 .input-theme {
     width: 0;
@@ -167,8 +161,6 @@ p.notice {
     background-size: cover;
 }
 
-
-
 .btn {
     text-align: center;
     display: block;
@@ -200,19 +192,6 @@ p.notice {
 .btn:hover {
     color: #ffffff;
     background-color: #07220a;
-}
-
-.timer {
-    color: #fff;
-    background-color: #0a510a;
-    font-size: 30px;
-    text-align: center;
-    display: block;
-    padding: 5px;
-    margin: 15px;
-    vertical-align: middle;
-    border: 0;
-    border-radius: 10px;
 }
 
 .form-space {
@@ -258,13 +237,12 @@ p.notice {
     background-color: transparent;
 }
 
-
+/* Валидация */
 .invalid, .invalid:focus {
     background: #ff9cfd;
     border-color: red;
     box-shadow: 0 0 10px 2px red;
 }
-
 
 #required {
     position: absolute;

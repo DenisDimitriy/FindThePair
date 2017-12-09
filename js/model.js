@@ -1,6 +1,8 @@
 /**
  * Created by Denis on 08.11.2017.
  */
+
+//Функция генерирования массива пар случайных целых чисел
 function getRandomPairArray(dimension) {
     var arrayFirst = [];
     var arraySecond = [];
@@ -23,6 +25,8 @@ function getRandomPairArray(dimension) {
 
 export {getRandomPairArray};
 
+
+//Функция генерирования игровой доски с картами
 function generateBoard(board, countOfPair) {
     //Определить значение ширины
     switch (countOfPair) {
@@ -61,11 +65,13 @@ function generateBoard(board, countOfPair) {
 export {generateBoard};
 
 
+//Функция инициализации карт
 function initCards(cards, countOfPair, theme) {
-//Сгенерировать массив случайных пар чисел
+
+    //Сгенерировать массив случайных пар чисел
     var RandomPairArray = getRandomPairArray(countOfPair);
 
-//Инициализировать блоки карт согласно массиву случайных пар чисел
+    //Инициализировать блоки карт согласно массиву случайных пар чисел
     for (var i = 0; i < RandomPairArray.length; i++) {
         cards[i].dataset.number = RandomPairArray[i];
         var back = cards[i].querySelector(".back");
@@ -78,6 +84,7 @@ function initCards(cards, countOfPair, theme) {
 export {initCards};
 
 
+//Функция удаления элемента карты с игровой доски в стек для сброса карт
 function removeCard(element) {
 
     //Инициализировать контейнеры
@@ -125,26 +132,27 @@ function removeCard(element) {
         newElement1.style.top = newTop + "px";
         newElement1.style.left = newLeft + "px";
 
-        //Скопировать клон 2 в клон 1, клон 2 удалить
+        //Скопировать клон 1 в клон 2, клон 1 удалить
         setTimeout(function () {
             newElement2.className = newElement1.className;
             newElement2.classList.remove("avatar");
             newElement2.innerHTML = newElement1.innerHTML;
             gameSpace.removeChild(newElement1);
         }, 500)
-
     }, 1000);
 
     //Удалить исходную карту
     element.innerHTML = null;
     element.className = "spacer";
 
+    //Вернуть ссылку на карту в стеке для сброса карт
     return newElement2;
 }
 
 export {removeCard};
 
 
+//Функция открытия карты
 function openCard(element) {
     element.classList.add('hover');
 }
@@ -152,6 +160,7 @@ function openCard(element) {
 export {openCard};
 
 
+//Функция закрытия карты
 function closeCard(element) {
     element.classList.remove('hover');
 }
@@ -159,6 +168,7 @@ function closeCard(element) {
 export {closeCard};
 
 
+//Функция инициализации таймера
 function initTimer(timer) {
     timer.innerHTML = '';
 
@@ -191,6 +201,7 @@ function initTimer(timer) {
 export {initTimer};
 
 
+//Функция запуска таймера
 function startTimer(timer) {
 
     var hour = timer.querySelector(".hour");
@@ -240,6 +251,7 @@ function startTimer(timer) {
 export {startTimer};
 
 
+//Функция останова таймера
 function stopTimer(timerId) {
     clearInterval(timerId)
 }
@@ -247,6 +259,7 @@ function stopTimer(timerId) {
 export {stopTimer};
 
 
+//Функция окончания игры
 function finishGame(
     name, 
     countOfPair, 

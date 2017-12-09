@@ -9,6 +9,8 @@ var table10 = document.querySelector(".size-10");
 var table12 = document.querySelector(".size-12");
 var btnClearLS = document.querySelector(".btn-clearLS");
 
+
+//Событие нажания на кнопку "Clear"
 btnClearLS.onclick = function () {
     localStorage.clear();
     table6.innerHTML = null;
@@ -19,6 +21,7 @@ btnClearLS.onclick = function () {
     return false;
 };
 
+//Функция генерирования таблиц рекордов из данных в Local storage
 function generateTables () {
     var records = JSON.parse(localStorage.getItem("records"));
     var records6 = [];
@@ -139,8 +142,10 @@ function generateTables () {
     }
 }
 
+//Сгенерировать таблицу при загрузке страницы
 generateTables ();
 
+//Событие нажатия на кнопку "Refresh"
 var btnRefresh = document.querySelector(".btn-refresh");
 btnRefresh.onclick = function () {
     table6.innerHTML = null;

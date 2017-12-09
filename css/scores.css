@@ -1,3 +1,4 @@
+/** Общие стили */
 body {
     margin: 0;
     padding: 0;
@@ -163,12 +164,15 @@ table td {
 }
 
 
+/** Стили для вкладок */
+
 /* Базовый контейнер табов */
 .tabs {
     width: 600px;
     padding: 0;
     margin: 30px auto 0 auto;
 }
+
 /* Стили секций с содержанием */
 .tabs>section {
     display: none;
@@ -183,6 +187,7 @@ table td {
     display: none;
     position: absolute;
 }
+
 /* Стили переключателей вкладок (табов) */
 .tabs>label {
     display: inline-block;
@@ -209,30 +214,7 @@ table td {
     width:100px;
 }
 
-/* Шрифт-иконки от Font Awesome в формате Unicode */
-/*
-.tabs>label:before {
-    font-family: fontawesome;
-    font-weight: normal;
-    margin-right: 10px;
-}
-.tabs>label[for*="1"]:before {
-    content: url("../img/...");
-    content: "\f19a";
-}
-.tabs>label[for*="2"]:before {
-    content: "\f17a";
-}
-.tabs>label[for*="3"]:before {
-    content: "\f13b";
-}
-.tabs>label[for*="4"]:before {
-    content: "\f13c";
-}
-*/
-
 /* Изменения стиля переключателей вкладок при наведении */
-
 .tabs>label:hover {
     cursor: pointer;
 }
@@ -250,30 +232,3 @@ table td {
 #tab1:checked~#content-tab1, #tab2:checked~#content-tab2, #tab3:checked~#content-tab3, #tab4:checked~#content-tab4 {
     display: block;
 }
-/* Убираем текст с переключателей
-* и оставляем иконки на малых экранах
-*/
-
-/*
-@media screen and (max-width: 680px) {
-    .tabs>label {
-        font-size: 0;
-    }
-    .tabs>label:before {
-        margin: 0;
-        font-size: 18px;
-    }
-}
-*/
-
-/* Изменяем внутренние отступы
-*  переключателей для малых экранов
-*/
-
-/*
-@media screen and (max-width: 400px) {
-    .tabs>label {
-        padding: 15px;
-    }
-}
-*/

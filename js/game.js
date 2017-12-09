@@ -1,6 +1,9 @@
 /**
  * Created by Denis on 08.11.2017.
  */
+
+// Импорт функций из файла model.js
+
 import {
     getRandomPairArray,
     generateBoard,
@@ -14,7 +17,8 @@ import {
     finishGame
 } from './model';
 
-//СЦЕНАРИЙ
+
+/** СЦЕНАРИЙ */
 
 //Глобальные переменные
 var countOfPair = 6,
@@ -31,7 +35,7 @@ var countOfPair = 6,
     disableBtnControl = false,
     disableBtnRestart = false;
 
-
+// Определения входящих параметров
 var loc = window.location;
 var href = loc.href;
 var index = href.indexOf("player");
@@ -84,7 +88,7 @@ if (index != -1) {
 }
 
 
-/* КОНФИГУРИРОВАНИЕ */
+/** КОНФИГУРИРОВАНИЕ */
 
 //Выбрать элемент board
 var board = document.querySelector(".board");
@@ -92,31 +96,19 @@ var board = document.querySelector(".board");
 //Сгенерировать доску с картами
 generateBoard(board, countOfPair);
 
-//Задать ширину стека удаленных карт
+//Выбрать стек удаленных карт
 var discardStack = document.querySelector(".discard-stack");
-var boardWidth = parseInt(getComputedStyle(board).width, 10);
-//discardStack.style.width = boardWidth + "px";
 
-//Задать ширину обвертки
-var wrapper = document.querySelector(".wrapper");
-//var wrapperWidth = boardWidth + 204;
-//wrapper.style.width = wrapperWidth + "px";
-
-
+//Адаптировать обвертку игровой доски под размер 6х6
 var wrapperBoard = document.querySelector(".wrapper-board");
 if (countOfPair == 6) {
     wrapperBoard.style.paddingTop = '56px';
     wrapperBoard.style.paddingBottom = '56px';
 }
 
+//Выбрать фоновое изображение согласно выбранной теме
 var gameSpace = document.querySelector(".game-space");
 gameSpace.style.backgroundImage = 'url("img/themes/' + theme + '/background.png")';
-
-
-//Задать высоту панели
-var panel = document.querySelector(".panel");
-var wrapperHeight = parseInt(getComputedStyle(gameSpace).height, 10);
-//panel.style.height = wrapperHeight + "px";
 
 //Выбрать набор элементов card в коллекцию
 var cards = document.getElementsByClassName("card");
@@ -133,28 +125,32 @@ initTimer(timer);
 //Выбрать блок кнопки управления
 var btnControl = document.querySelector(".btn-control");
 
-//Выбрать блок кнопки управления
+//Выбрать блок кнопки перезапуска
 var btnRestart = document.querySelector(".btn-restart");
 
+//Выбрать блок заставки паузы и финиша
 var cover = document.querySelector(".cover");
 
-/*СЦЕНАРИЙ ИГРЫ*/
+
+/** СЦЕНАРИЙ ИГРЫ */
 
 //Обработчики событий
 //Клик на кнопку управления
 btnControl.onclick = function () {
-    console.log(gameStarted + " | " + disableBtnControl);
+
     //Если игра не начата
     if (!gameStarted) {
         disableBtnControl = true;
         disableBtnRestart = true;
         gameStarted = true;
         btnControl.innerHTML = "Pause";
+
         //Открыть карты
         for (var i = 0; i < cards.length; i++) {
             openCard(cards[i]);
         }
-        //Через время открыть все карты, разрешить выбор карт, запустить таймер
+
+        //Через время закрыть все карты, разрешить выбор карт, запустить таймер
         setTimeout(function () {
             for (i = 0; i < cards.length; i++) {
                 closeCard(cards[i]);
@@ -164,12 +160,13 @@ btnControl.onclick = function () {
             disableBtnControl = false;
             disableBtnRestart = false;
         }, 2000);
-
         btnControl.classList.remove("btn-start");
     }
-    //если игра запущена, не закончена и не нажата пауза
+
+    //Если игра запущена, не окончена и не нажата пауза
     else if (!gamePaused && !gameFinished && !disableBtnControl) {
-        //включить паузу
+
+        //Включить паузу
         gamePaused = true;
         btnControl.innerHTML = "Resume";
         disableSelect = true;
@@ -179,8 +176,10 @@ btnControl.onclick = function () {
         cover.classList.remove("hidden");
         cover.innerHTML = "pause";
     }
-    //если игра запущена, не закончена и нажата пауза
+
+    //Если игра запущена, не окончена и нажата пауза
     else if (gamePaused && !gameFinished && !disableBtnControl) {
+
         //Выключить паузу
         gamePaused = false;
         btnControl.innerHTML = "Pause";
@@ -189,29 +188,7 @@ btnControl.onclick = function () {
         cover.classList.add("hidden");
         cover.innerHTML = "";
     }
-    //Если игра закончена
-    if (gameFinished) {
 
-        /*
-         //Рестарт игры
-         board.innerHTML = null;
-         timer.innerHTML = null;
-         discardStack.innerHTML = null;
-         generateBoard(board, countOfPair);
-         cards = document.getElementsByClassName("card");
-         initCards(cards, countOfPair, theme);
-         initTimer(timer);
-         btnControl.innerHTML = "Start";
-
-         selected = null;
-         counter = 0;
-         disableSelect = true;
-         timerId = null;
-         gameStarted = false;
-         gamePaused = false;
-         gameFinished = false;
-         */
-    }
     return false;
 };
 
@@ -220,6 +197,7 @@ btnRestart.onclick = function () {
     if (disableBtnRestart) {
         return false
     }
+
     //Рестарт игры
     board.innerHTML = null;
     timer.innerHTML = null;
@@ -230,7 +208,6 @@ btnRestart.onclick = function () {
     initTimer(timer);
     btnControl.innerHTML = "Start";
     counterTryes = 0;
-
     wrapperBoard.classList.remove("transparent");
     selected = null;
     counter = 0;
@@ -240,9 +217,7 @@ btnRestart.onclick = function () {
     gamePaused = false;
     gameFinished = false;
     disableBtnControl = false;
-
     cover.classList.add("hidden");
-
     btnControl.classList.remove("btn-disabled");
     btnControl.classList.add("btn-start");
     return false;
@@ -250,16 +225,17 @@ btnRestart.onclick = function () {
 
 //Клик в пределах доски
 board.onclick = function (event) {
+
     //Выбрать карту в цели клика
     var target = event.target.closest('.card');
 
     //Возврат, если клик не на карте
     if (target == null) return;
 
-    //Если клик на карту и нет запрета выбора карты
+    //Если клик на карте и нет запрета выбора карты
     if (target.classList.contains("card") && disableSelect != true) {
 
-        //если ниодна карта еще не выбрана
+        //Если ниодна карта еще не выбрана
         if (!selected) {
             selected = target;
             openCard(selected);
@@ -290,6 +266,8 @@ board.onclick = function (event) {
                 selected = null;
                 target = null;
                 counter++;
+
+                //Eсли все пары найдены
                 if (counter == countOfPair) {
                     gameFinished = true;
                     btnControl.innerHTML = "Start";
@@ -298,34 +276,11 @@ board.onclick = function (event) {
                     setTimeout(function () {
                         disableBtnRestart = false;
                     }, 1500);
-
                     stopTimer(timerId);
                     finishGame(name, countOfPair, counterTryes);
-
                 }
             }
         }
     }
     return false;
 };
-
-
-/*
- var params = window
- .location
- .search
- .replace('?','')
- .split('&')
- .reduce(
- function(p,e){
- var a = e.split('=');
- p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
- return p;
- },
- {}
- );
-
- alert( params['data']);
- */
-
-

@@ -2,63 +2,47 @@
  * Created by Denis on 02.12.2017.
  */
 
+//Определить глобальные переменные
 var formOptions = document.querySelector("#form-options");
 var submitOptions = document.querySelector("#submit-options");
 
-//var inputName = document.querySelector(".input-name");
-/*
- formOptions.onsubmit = function () {
- validate();
- return false;
- };
- */
-/*
- function validate() {
- var valid;
- var string = inputName.value;
-
- console.log(inputName.value);
- return valid;
- }
- */
-
 var form = formOptions,
-    field = form.querySelector('.input-name'),
-    msg = document.getElementById('required'),
     regExp = [/^[A-Za-z0-9\s-]+$|^$/];
-//regExp = [/^[А-Яа-яЁё]+$/, /.+@.+\..+/i, /^[А-Яа-яЁё\W\s\d]+$/, /^[А-Яа-яЁё\W\s\d]+$/];
+
+var field = form.querySelector('.input-name');
+var msg = document.getElementById('required');
 
 var valid = true;
+
+//Событие отправки формы
 form.onsubmit = function (event) {
 
     event.preventDefault();
-/*
-    field.classList.remove('invalid');
-    if (!field.value.length) {
-    }
-*/
+
     validate();
 
     if (valid) {
         form.submit();
     }
-
 };
 
+//Событие клика на кнопку "Play"
 submitOptions.onclick = function () {
     var event = new Event("submit");
     form.dispatchEvent(event);
 };
 
+//Событие фокусировки на поле ввода
 field.onblur = function () {
     validate();
 };
 
+//Событие ухода с поля ввода
 field.onfocus = function () {
     validate();
 };
 
-
+//Событие изменения поля ввода
 if ("onpropertychange" in field) {
     // старый IE
     field.onpropertychange = function() {
@@ -71,7 +55,7 @@ if ("onpropertychange" in field) {
     };
 }
 
-
+//Функция валидации формы
 function validate() {
     valid = true;
     msg.innerHTML = '';
@@ -82,50 +66,3 @@ function validate() {
         valid = false;
     }
 }
-
-
-
-/*
- var	form = formOptions,
- fields = form.querySelectorAll('input[type="text"], input[type="email"]'),
- msg = document.getElementById('required'),
- regExp = [/^[А-Яа-яЁё]+$/, /.+@.+\..+/i, /^[А-Яа-яЁё\W\s\d]+$/, /^[А-Яа-яЁё\W\s\d]+$/];
- //regExp = [/^[А-Яа-яЁё]+$/, /.+@.+\..+/i, /^[А-Яа-яЁё\W\s\d]+$/, /^[А-Яа-яЁё\W\s\d]+$/];
-
- form.onsubmit = function(event) {
- var valid = true, cnt = 0;
-
- event.preventDefault();
-
- Array.prototype.forEach.call(fields, function(input) {
- input.classList.remove('invalid');
- if(!input.value.length) {
- cnt++;
- }
- });
-
- if(cnt == fields.length) {
- Array.prototype.forEach.call(fields, function(input) {
- input.classList.add('invalid');
- });
- msg.innerHTML = 'Заполните обязательные поля!';
- return;
- }
- */
-/*
- for (var i = 0, l = fields.length; i < l; i++) {
- fields[i].classList.remove('invalid');
- if(!fields[i].value.match(regExp[i])) {
- fields[i].classList.add('invalid');
- msg.innerHTML = 'Неверно введено поле ' + fields[i].title + '!';
- valid = false;
- break;
- }
- }
-
- if (valid) {
- form.submit();
- };
-
- }
- */
