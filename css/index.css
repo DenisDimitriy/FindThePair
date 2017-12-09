@@ -152,8 +152,8 @@ p.notice {
     cursor: pointer;
 }
 
-#theme-numbers[type="radio"] + label  {
-    background-image: url("../img/themes/numbers/back-side.png");
+#theme-hearthstone[type="radio"] + label  {
+    background-image: url("../img/themes/hearthstone/back-side.png");
     background-size: cover;
 }
 
