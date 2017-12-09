@@ -1,4 +1,4 @@
-h1 FindThePair
+FindThePair
 =====================
 ---
 > _Find_ _a_ _pair_ _of_ _identical_ _cards_ _as_ _rapidly_ _as_ _possible_.
@@ -24,4 +24,12 @@ h1 FindThePair
 После окончания игры насчитываются очки в зависимости от времени и количества попыток
 Чем больше время и чем больше попыток, тем меньше очков насчитывается
 
+### Ссылки на использованные фрагменты кода
 
+[Получение в javascript параметров формы методом get](https://ru.stackoverflow.com/questions/453355/javascript-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-get-%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80)
+
+[Вкладки на css](http://dbmast.ru/adaptivnye-vkladki-taby-na-css3)
+
+[Стилизация скролла](https://yraaa.ru/scripts/stilizatsiya-polosyi-prokrutki-s-pomoschyu-css)
+
+[Валидация поля ввода имени и почты](https://javascript.ru/forum/dom-window/40329-gramotnaya-validaciya-formy.html)
