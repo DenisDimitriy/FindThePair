@@ -23,7 +23,7 @@ import {
 //Глобальные переменные
 var countOfPair = 6,
     name = "unknown",
-    theme = "numbers",
+    theme = "hearthstone",
     timerId,
     counterTryes = 0,
     counter = 0,
